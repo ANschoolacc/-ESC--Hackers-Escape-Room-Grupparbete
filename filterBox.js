@@ -15,6 +15,17 @@ tagButtons.forEach(button => {
 
 //filter function by type (Alex)
 function byType() {
+    let filteredData;
+    if (onlineCheckbox.checked && onSiteCheckbox.checked) {
+        filteredData = challenges;
+    } else if (onlineCheckbox.checked && !onSiteCheckbox.checked) {
+        filteredData = challenges.filter(challenge => challenge.type !== 'onsite');
+    } else if (onSiteCheckbox.checked && !onlineCheckbox.checked) {
+        filteredData = challenges.filter(challenge => challenge.type !== 'online');
+    } else {
+        filteredData = [];
+    }
+    return filteredData;
 }
 
 //filter function by tag (Alex)
