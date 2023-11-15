@@ -68,6 +68,70 @@ html {
   }
 }
 
+.ourChallenges {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1280px;
+  justify-content: center;
+  gap: 38px;
+  padding-top: 30px;
+
+  &__card {
+    border-radius: 8px;
+    box-shadow: 0 0 8px #b6bdb5;
+    display: flex;
+    flex-direction: column;
+    height: 446px;
+    width: 363px;
+  }
+
+  &__img {
+    background-image: url("assets/image 2.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 8px 8px 0px 0px;
+    height: 219px;
+    width: 363px;
+  }
+  &__title {
+    font-size: 28px;
+    margin: 0;
+    margin: 0px 17px;
+    margin-top: 12px;
+  }
+  &__rating {
+    margin: 0px 17px;
+    margin-bottom: 23px;
+  }
+  &__participants {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 15px;
+  }
+  &__text {
+    color: #000000;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 0px 17px;
+    white-space: normal;
+  }
+  &__btn {
+    align-self: flex-end;
+    background-color: #e3170a;
+    border: none;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.7rem;
+    font-weight: 700;
+    height: 44px;
+    margin: 20px 18px 12px 0px;
+    width: 179.28px;
+  }
+}
+
 .btnCont {
   display: flex;
   flex-direction: column;
@@ -79,7 +143,7 @@ html {
     justify-content: center;
   }
   @include breakpoint($xxl) {
-    transform: scale(1.5);
+    transform: scale(1.2);
   }
   &__onSiteBtn {
     background-color: #8acfe5;
@@ -136,6 +200,9 @@ html {
     @include breakpoint($medium) {
       margin-top: 77px;
     }
+  }
+  & a {
+    text-align: center;
   }
 }
 
@@ -206,6 +273,7 @@ html {
   overflow-x: scroll;
   padding: 10px 0px 10px 0px;
   width: 100vw;
+  gap: 40px;
 
   @include breakpoint($xl) {
     align-items: center;
@@ -216,7 +284,7 @@ html {
   }
   @include breakpoint($xxl) {
     height: 600px;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100vw;
   }
   &::-webkit-scrollbar {
@@ -228,15 +296,7 @@ html {
     display: flex;
     flex-direction: column;
     height: 446px;
-    margin: 0px 19px;
     width: 363px;
-
-    @include breakpoint($xl) {
-      margin: 0px 21px;
-    }
-    @include breakpoint($xxl) {
-      transform: scale(1.3);
-    }
   }
   &__card--moreMarginLeft {
     margin-left: 52px;
@@ -350,7 +410,7 @@ html {
       margin-top: 44px;
     }
     @include breakpoint($xxl) {
-      transform: scale(1.5);
+      transform: scale(1.2);
     }
   }
   &__btn:hover {
