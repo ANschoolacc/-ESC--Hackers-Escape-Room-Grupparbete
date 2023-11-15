@@ -1,4 +1,5 @@
 import { challengesArray as challenges } from './fetchChallenges.js';
+
 //Getting DOM elements to be used globally
 const onlineCheckbox = document.querySelector('.filter__onlineCheckbox');
 const onSiteCheckbox = document.querySelector('.filter__onSiteCheckbox');
@@ -14,7 +15,6 @@ tagButtons.forEach(button => {
     });
 });
 
-//filter function by type (Alex)
 function byType(filteredData) {
     if (onlineCheckbox.checked && onSiteCheckbox.checked) {
         filteredData = challenges;
@@ -28,9 +28,27 @@ function byType(filteredData) {
     return filteredData;
 }
 
-//filter function by tag (Alex)
 function byTag(filteredData) {
-    return filteredData
+    const selectedButtons = [];
+    tagButtons.forEach(button => {
+        if (button.classList.contains('filter__tagButton--selected')) {
+        selectedButtons.push(button);
+        }
+    });
+
+    if (selectedButtons.length === 0) {
+        return filteredData;
+    }
+
+    const selectedTags = selectedButtons.map(button => button.innerHTML.toLowerCase());
+    filteredData = filteredData.filter(challenge => 
+        selectedTags.every(tag => challenge.labels.includes(tag))
+    );
+
+    console.log(selectedButtons);
+    console.log(selectedTags);
+
+    return filteredData;
 }
 
 //filter function by rating (Fredrick)
@@ -43,7 +61,7 @@ function byKeyword(filteredData) {
     return filteredData
 }
 
-//function that calls all the other filter functions that is run everytime the user clicks on any filter option (Alex)
+//function that calls all the other filter functions that is run everytime the user clicks on any filter option
 function filterData(challenges) {
     let filteredData = challenges;
     filteredData = byType(filteredData);
@@ -67,10 +85,3 @@ function renderFilteredCards(filteredData) {
         }
     })
 }
-
-//filteredData needs to be used do create the cards that are displayed on the page (Max and Albin)
-
-/*Need to create a function that resets the filter options to default, showing all the cards(Alex and Fredrick)
-(All checkboxes checked, all buttons unselected rating set to 1/5 to 5/5 stars and input field empty)
-This function should be connected to the close button of the filterbox.
-*/
