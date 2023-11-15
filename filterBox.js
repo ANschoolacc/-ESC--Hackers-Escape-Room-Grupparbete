@@ -44,10 +44,7 @@ function byTag(filteredData) {
     filteredData = filteredData.filter(challenge => 
         selectedTags.every(tag => challenge.labels.includes(tag))
     );
-
-    console.log(selectedButtons);
-    console.log(selectedTags);
-
+    
     return filteredData;
 }
 
