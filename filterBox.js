@@ -1,14 +1,14 @@
 //Getting DOM elements to be used globally
-const onlineCheckbox = document.querySelector('.filterBox__onlineCheckbox');
-const onSiteCheckbox = document.querySelector('.filterBox__onSiteCheckbox');
-const tagButtons = document.querySelectorAll('.filterBox__tagButton');
+const onlineCheckbox = document.querySelector('.filter__onlineCheckbox');
+const onSiteCheckbox = document.querySelector('.filter__onSiteCheckbox');
+const tagButtons = document.querySelectorAll('.filter__tagButton');
 
 //Event listeners for the filter options
 onlineCheckbox.addEventListener('change', filterData);
 onSiteCheckbox.addEventListener('change', filterData);
 tagButtons.forEach(button => {
     button.addEventListener('click', () => {
-        button.classList.toggle('filterBox__tagButton--selected');
+        button.classList.toggle('filter__tagButton--selected');
         filterData();
     });
 });
