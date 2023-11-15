@@ -9,6 +9,8 @@
       src="https://kit.fontawesome.com/193a8b5258.js"
       crossorigin="anonymous"
     ></script>
+    <script src="fetchChallenges.js" type="module" defer></script>
+    <script src="filterBox.js" type="module" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -120,6 +122,9 @@
           </div>
         </div>
       </section>
+      <section class="ourChallenges">
+
+      </section>
     </main>
 
     <footer class="footer">
@@ -153,5 +158,22 @@
     </footer>
 
     <script src="script.js"></script>
+    <template id="card-template">
+      <article class="sidescroll__card sidescroll__card--moreMarginRight">
+        <div class="sidescroll__img"></div>
+        <h2 class="sidescroll__title">Title of room (on-site)</h2>
+        <div class="sidescroll__rating">
+          <div class="sidescroll_stars">
+
+          </div>
+          <small class="sidescroll__participants">2-6 participants</small>
+        </div>
+        <p class="sidescroll__text">
+          Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
+          nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
+        </p>
+        <button class="sidescroll__btn">Book this room</button>
+      </article>
+    </template>
   </body>
 </html>
