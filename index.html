@@ -9,6 +9,7 @@
       src="https://kit.fontawesome.com/193a8b5258.js"
       crossorigin="anonymous"
     ></script>
+    <script src="script.js" type="module" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -33,9 +34,9 @@
 
       <ul class="navbar">
         <li class="navbar__navItem">
-          <a href="ourChallenges.html">Play online</a>
+          <a href="ourChallenges.html?onsite=false">Play online</a>
         </li>
-        <li class="navbar__navItem"><a href="">Play on-site</a></li>
+        <li class="navbar__navItem"><a href="ourChallenges.html?online=false">Play on-site</a></li>
         <li class="navbar__navItem"><a href="">The story</a></li>
         <li class="navbar__navItem"><a href="">Contact us</a></li>
       </ul>
@@ -69,11 +70,12 @@
       </section>
 
       <section class="btnCont btnCont--offSet">
-        <button class="btnCont__onSiteBtn">On-site challenges</button>
-
-        <a href="ourChallenges.html">
-          <button class="btnCont__onlineBtn">Online challenges</button></a
-        >
+        <a href="ourChallenges.html?online=false">
+          <button class="btnCont__onSiteBtn">On-site challenges</button>
+        </a>
+        <a href="ourChallenges.html?onsite=false">
+          <button class="btnCont__onlineBtn">Online challenges</button>
+        </a>
       </section>
 
       <section class="reviewCont">
@@ -113,65 +115,15 @@
 
       <h2 class="main__popularTitle">Popular challenges right now</h2>
 
-      <section class="sidescroll">
-        <article class="sidescroll__card sidescroll__card--moreMarginLeft">
-          <div class="sidescroll__img"></div>
-          <h2 class="sidescroll__title">Title of room (on-site)</h2>
-          <div class="sidescroll__rating">
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 5.png" alt="emptystar" />
-            <small class="sidescroll__participants">2-6 participants</small>
-          </div>
-          <p class="sidescroll__text">
-            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-          </p>
-          <button class="sidescroll__btn">Book this room</button>
-        </article>
-        <article class="sidescroll__card">
-          <div class="sidescroll__img"></div>
-          <h2 class="sidescroll__title">Title of room (on-site)</h2>
-          <div class="sidescroll__rating">
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 5.png" alt="emptystar" />
-            <small class="sidescroll__participants">2-6 participants</small>
-          </div>
-          <p class="sidescroll__text">
-            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-          </p>
-          <button class="sidescroll__btn">Book this room</button>
-        </article>
-        <article class="sidescroll__card sidescroll__card--moreMarginRight">
-          <div class="sidescroll__img"></div>
-          <h2 class="sidescroll__title">Title of room (on-site)</h2>
-          <div class="sidescroll__rating">
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 2.png" alt="fullstar" />
-            <img src="assets/Star 5.png" alt="emptystar" />
-            <small class="sidescroll__participants">2-6 participants</small>
-          </div>
-          <p class="sidescroll__text">
-            Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-            nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-          </p>
-          <button class="sidescroll__btn">Book this room</button>
-        </article>
-      </section>
+      <section class="sidescroll"></section>
 
       <section class="btnCont btnCont--moreTopMargin">
-        <button class="btnCont__onSiteBtn">On-site challenges</button>
-        <a href="ourChallenges.html"
-          ><button class="btnCont__onlineBtn">Online challenges</button></a
-        >
+        <a href="ourChallenges.html?online=false">
+          <button class="btnCont__onSiteBtn">On-site challenges</button>
+        </a>
+        <a href="ourChallenges.html?onsite=false">
+          <button class="btnCont__onlineBtn">Online challenges</button>
+        </a>
       </section>
 
       <section class="break">
@@ -241,9 +193,9 @@
         <li class="lowerNav__item"><a href="">Legal</a></li>
         <br />
         <li class="lowerNav__item">
-          <a href="ourChallenges.html">Play online</a>
+          <a href="ourChallenges.html?onsite=false">Play online</a>
         </li>
-        <li class="lowerNav__item"><a href="">Play on-site</a></li>
+        <li class="lowerNav__item"><a href="ourChallenges.html?online=false">Play on-site</a></li>
       </ul>
 
       <ul class="lowerNav lowerNav--marginRight">
@@ -254,6 +206,22 @@
       </ul>
     </footer>
 
-    <script src="script.js"></script>
+    <template id="card-template">
+      <article class="sidescroll__card sidescroll__card--moreMarginRight">
+        <img class="sidescroll__img"></img>
+        <h2 class="sidescroll__title">Title of room (on-site)</h2>
+        <div class="sidescroll__rating">
+          <div class="sidescroll__rating__stars">
+
+          </div>
+          <small class="sidescroll__participants">2-6 participants</small>
+        </div>
+        <p class="sidescroll__text">
+          Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
+          nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
+        </p>
+        <button class="sidescroll__btn">Book this room</button>
+      </article>
+    </template>
   </body>
 </html>

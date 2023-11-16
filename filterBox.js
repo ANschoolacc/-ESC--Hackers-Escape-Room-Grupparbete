@@ -1,19 +1,57 @@
-import { challengesArray as challenges } from './fetchChallenges.js';
+import { challenges } from './fetchChallenges.js';
 
 //Getting DOM elements to be used globally
 const onlineCheckbox = document.querySelector('.filter__onlineCheckbox');
 const onSiteCheckbox = document.querySelector('.filter__onSiteCheckbox');
 const tagButtons = document.querySelectorAll('.filter__tagButton');
 
+//Getting search params from URL
+const searchParams = new URL(document.location).searchParams;
+onlineCheckbox.checked = searchParams.get('online') !== 'false';
+onSiteCheckbox.checked = searchParams.get('onsite') !== 'false'; 
+
+
 //Event listeners for the filter options
-onlineCheckbox.addEventListener('change', () => filterData(challenges));
-onSiteCheckbox.addEventListener('change', () => filterData(challenges));
+onlineCheckbox.addEventListener('change', () => {
+    setSearchParams(`online, ${onlineCheckbox.checked}`)
+    filterData(challenges)
+});
+onSiteCheckbox.addEventListener('change', () => {
+    filterData(challenges)
+    setSearchParams(`onsite, ${onSiteCheckbox.checked}`)});
 tagButtons.forEach(button => {
+    searchParams.forEach((value, key) => {
+        if (key === 'tags') {
+            if (value.includes(button.innerHTML.toLowerCase())) {
+                button.classList.add('filter__tagButton--selected');
+            }
+        }
+    })
     button.addEventListener('click', () => {
         button.classList.toggle('filter__tagButton--selected');
         filterData(challenges);
+        setSearchParams(`tags, ${[...document.querySelectorAll('.filter__tagButton--selected')].map(button => button.innerHTML.toLowerCase())}`)
     });
 });
+
+//Filter challenges on page load if search params exist
+if(searchParams.size > 0) {
+    filterData(challenges);
+}
+
+function setSearchParams(str) {
+    const searchParams = new URLSearchParams(window.location.search)
+    const [key, value] = str.split(', ')
+    searchParams.set(key, value)
+    const entries = [...searchParams.entries()]
+    entries.forEach(([key, value]) => {
+        if ((!value || value === 'true')) {
+            searchParams.delete(key);
+        }
+      }); 
+    const newRelativePath = searchParams.toString().length > 0 ? window.location.pathname + '?' + searchParams.toString() : window.location.pathname
+    history.pushState(null, '', newRelativePath); 
+}
 
 function byType(filteredData) {
     if (onlineCheckbox.checked && onSiteCheckbox.checked) {
