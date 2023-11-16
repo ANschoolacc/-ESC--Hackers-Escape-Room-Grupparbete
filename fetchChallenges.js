@@ -20,14 +20,15 @@ export function renderChallenges(container, threeHighest) {
         const image = template.querySelector('.sidescroll__img');
         const h2 = template.querySelector('h2');
         const rating = template.querySelector('.sidescroll__rating');
-        const participans = template.querySelector('.sidescroll__participants');
+        const participants = template.querySelector('.sidescroll__participants');
         const description = template.querySelector('.sidescroll__text');
         const button = template.querySelector('.sidescroll__btn')
         button.textContent = challenge.type === 'online' ? 'Take challenge online' : 'Book this room'
         card.id = challenge.id
         image.src = challenge.image // `${challenge.image}?image=${Math.floor(Math.random() * 16)}` to make image random
-        h2.textContent = challenge.title;
-        participans.textContent = challenge.minParticipants === challenge.maxParticipants ? `${challenge.minParticipants} participants` : `${challenge.minParticipants}-${challenge.maxParticipants} participants`
+        h2.textContent = challenge.type === 'onsite' ? challenge.title + ' (on-site)' : challenge.title
+        participants.textContent = challenge.minParticipants === challenge.maxParticipants ? `${challenge.minParticipants} participants` : `${challenge.minParticipants}-${challenge.maxParticipants} participants`
+        participants.textContent += challenge.type === 'online' ? ' (networked)' : ''
         description.textContent = challenge.description;
         createStars(rating.firstElementChild, challenge.rating)
         container.appendChild(template)
