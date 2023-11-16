@@ -1,15 +1,15 @@
 const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
 const data = await res.json();
 export const challenges = data.challenges;
-if(window.location.pathname === '/ourChallenges.html') {
+if(window.location.pathname.includes('ourChallenges')) {
     const container = document.querySelector('.ourChallenges')
     renderChallenges(container)
 }
 
-export function renderChallenges(container, amount) {
+export function renderChallenges(container, threeHighest) {
     let challengesToRender
-    if(amount) {
-        challengesToRender = challenges.splice(0, amount)
+    if(threeHighest) {
+        challengesToRender = challenges.sort((a, b) => b.rating - a.rating).slice(0, 3);
     } else {
         challengesToRender = challenges
     }
