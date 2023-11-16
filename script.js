@@ -1,3 +1,9 @@
+import { renderChallenges } from './fetchChallenges.js';
+if (window.location.pathname === '/index.html') {
+  const container = document.querySelector('.sidescroll')
+  renderChallenges(container, 3);
+}
+
 /*Eventlistener that reacts to click on menu lines in mobilemode */
 document
   .querySelector(".logoAndTitle__hamburgerBtn")

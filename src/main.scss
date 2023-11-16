@@ -323,19 +323,27 @@ html {
   }
   &__title {
     font-size: 28px;
-    margin: 0;
-    margin: 0px 17px;
-    margin-top: 12px;
+    margin: 16px 16px 0;
+    font-weight: normal;
   }
   &__rating {
-    margin: 0px 17px;
-    margin-bottom: 23px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 16px;
+    margin-bottom: 20px;
+    &__stars {
+      display: flex;
+      gap: 6px;
+      color: #e3170a;
+      font-size: 16px;
+    }
   }
+  
   &__participants {
     display: inline-block;
     font-size: 14px;
     font-weight: 400;
-    margin-left: 15px;
   }
   &__text {
     color: #000000;
@@ -343,6 +351,7 @@ html {
     font-weight: 400;
     margin: 0px 17px;
     white-space: normal;
+    flex-grow: 1;
   }
   &__btn {
     align-self: flex-end;
@@ -354,7 +363,7 @@ html {
     font-size: 0.7rem;
     font-weight: 700;
     height: 44px;
-    margin: 20px 18px 12px 0px;
+    margin: 0 14px 14px 0;
     width: 179.28px;
   }
 }

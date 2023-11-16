@@ -11,6 +11,7 @@
     ></script>
     <script src="fetchChallenges.js" type="module" defer></script>
     <script src="filterBox.js" type="module" defer></script>
+    <script src="script.js" type="module" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -76,11 +77,11 @@
             <div class="filter__filterByType">
               <h4 class="filter__h4">By type</h4>
               <label>
-                <input type="checkbox" class="filter__onlineCheckbox" checked />
+                <input type="checkbox" class="filter__onlineCheckbox" />
                 Include online challenges
               </label>
               <label>
-                <input type="checkbox" class="filter__onSiteCheckbox" checked />
+                <input type="checkbox" class="filter__onSiteCheckbox" />
                 Include on-site challenges
               </label>
             </div>
@@ -156,14 +157,12 @@
         <li class="lowerNav__item"><a href="">Twitter</a></li>
       </ul>
     </footer>
-
-    <script src="script.js"></script>
     <template id="card-template">
       <article class="sidescroll__card sidescroll__card--moreMarginRight">
-        <div class="sidescroll__img"></div>
+        <img class="sidescroll__img"></img>
         <h2 class="sidescroll__title">Title of room (on-site)</h2>
         <div class="sidescroll__rating">
-          <div class="sidescroll_stars">
+          <div class="sidescroll__rating__stars">
 
           </div>
           <small class="sidescroll__participants">2-6 participants</small>
