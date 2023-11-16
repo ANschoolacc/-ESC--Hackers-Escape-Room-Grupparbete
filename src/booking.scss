@@ -8,7 +8,6 @@
     bottom: 100px;
     background-color: #fff;
     border: solid gray 2px;
-    
 
     &__title {
         max-width: 440px;
@@ -28,6 +27,20 @@
     &__input-title {
         font-size: 0.8em;
         font-weight: 700;
+    }
+
+    .thank-you {
+        font-size: 2em;
+        margin-bottom: 50px;
+    }
+
+    a{
+        color: #36769d;
+        text-decoration: underline;
+    }
+
+    a:visited {
+        color: #36769d;
     }
     
     &__step-one {
@@ -149,10 +162,37 @@
         flex-direction: column;
         align-items: flex-end;
         justify-content: flex-end;
-        height: 210px;
+        height: 216px;
 
         @include breakpoint($small) {
-            height: 253px;
+            height: 258px;
         }
+    }
+}
+
+.grow-in{
+    animation: growIn 0.1s linear 1 normal forwards;
+}
+
+.fade-in{
+    animation: fadeIn 0.15s ease-in 1 normal forwards;
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0.3;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+
+@keyframes growIn {
+    0% {
+        scale: 70%;
+    }
+    100% {
+        scale: 100%;
     }
 }

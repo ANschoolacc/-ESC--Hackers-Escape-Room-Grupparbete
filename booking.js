@@ -20,6 +20,7 @@
   cardButton.forEach(button => {
     button.addEventListener("click", () => {
         bookingContainer.style.display = "block";
+        bookingContainer.classList.add("grow-in");
         document.querySelector(".body").style.overflow = "hidden";
   });
 });
@@ -37,6 +38,9 @@
   bookingButtonOne.addEventListener("click", () => {
     document.querySelector(".booking-container__step-one").classList.add("invisible");
     document.querySelector(".booking-container__step-two").classList.remove("invisible");
+
+    document.querySelector(".second-step").classList.add("fade-in");
+    document.querySelector(".booking-container__submit-button").classList.add("fade-in");
   })
 
   //Adding eventlistener which takes you from the second step to the final step (Thank you)
@@ -44,4 +48,5 @@
   submitBookingButton.addEventListener("click", () => {
     document.querySelector(".booking-container__step-two").classList.add("invisible");
     document.querySelector(".booking-container__step-three").classList.remove("invisible");
+    document.querySelector(".booking-container__step-three").classList.add("fade-in");
   })
