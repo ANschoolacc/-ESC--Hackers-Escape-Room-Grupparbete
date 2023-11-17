@@ -1,4 +1,4 @@
-const data = await fetchData(`https://lernia-sjj-assignments.vercel.app/api/chalslenges`).catch(error => console.log(error.message))
+const data = await fetchData(`https://lernia-sjj-assignments.vercel.app/api/challenges`).catch(error => console.log(error.message))
 
 async function fetchData(url) {
     const response = await fetch(url)
