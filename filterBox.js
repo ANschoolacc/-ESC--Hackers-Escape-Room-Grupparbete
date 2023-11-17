@@ -108,15 +108,11 @@ function filterData(challenges) {
 
 function renderFilteredCards(filteredData) {
     const container = [...document.querySelector('.ourChallenges').children]
-    const ids = []
-    filteredData.forEach(challenge => {
-        ids.push(challenge.id)
-    })
     container.forEach(child => {
-        if (!ids.includes(Number(child.id))) {
-            child.style.display = 'none'
-        } else {
+        if (filteredData.map(challenge => challenge.id).includes(Number(child.id))) {
             child.style.display = ''
+        } else {
+            child.style.display = 'none'
         }
     })
 }

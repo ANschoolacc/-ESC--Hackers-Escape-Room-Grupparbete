@@ -1,14 +1,27 @@
-const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/challenges');
-const data = await res.json();
-export const challenges = data.challenges;
-if(window.location.pathname.includes('ourChallenges')) {
+const data = await fetchData(`https://lernia-sjj-assignments.vercel.app/api/chalslenges`).catch(error => console.log(error.message))
+
+async function fetchData(url) {
+    const response = await fetch(url)
+    if(response.ok) {
+        return await response.json();
+    } else {
+        throw new Error(`Something went wrong with the request. Error code: ${response.status}`)
+    }
+}
+
+export const challenges = data?.challenges;
+if (window.location.pathname.includes('ourChallenges')) {
     const container = document.querySelector('.ourChallenges')
     renderChallenges(container)
+} else {
+    const container = document.querySelector('.sidescroll')
+    renderChallenges(container, true)
 }
 
 export function renderChallenges(container, threeHighest) {
+    if(!challenges) return;
     let challengesToRender
-    if(threeHighest) {
+    if (threeHighest) {
         challengesToRender = challenges.sort((a, b) => b.rating - a.rating).slice(0, 3);
     } else {
         challengesToRender = challenges
@@ -16,9 +29,9 @@ export function renderChallenges(container, threeHighest) {
     const challengeTemplate = document.getElementById('card-template')
     challengesToRender.forEach(challenge => {
         const template = challengeTemplate.content.cloneNode(true)
-        const card = template.querySelector('article');
+        const card = template.querySelector('.sidescroll__card');
         const image = template.querySelector('.sidescroll__img');
-        const h2 = template.querySelector('h2');
+        const title = template.querySelector('.sidescroll__title');
         const rating = template.querySelector('.sidescroll__rating');
         const participants = template.querySelector('.sidescroll__participants');
         const description = template.querySelector('.sidescroll__text');
@@ -26,7 +39,7 @@ export function renderChallenges(container, threeHighest) {
         button.textContent = challenge.type === 'online' ? 'Take challenge online' : 'Book this room'
         card.id = challenge.id
         image.src = challenge.image // `${challenge.image}?image=${Math.floor(Math.random() * 16)}` to make image random
-        h2.textContent = challenge.type === 'onsite' ? challenge.title + ' (on-site)' : challenge.title
+        title.textContent = challenge.type === 'onsite' ? challenge.title + ' (on-site)' : challenge.title
         participants.textContent = challenge.minParticipants === challenge.maxParticipants ? `${challenge.minParticipants} participants` : `${challenge.minParticipants}-${challenge.maxParticipants} participants`
         participants.textContent += challenge.type === 'online' ? ' (networked)' : ''
         description.textContent = challenge.description;
