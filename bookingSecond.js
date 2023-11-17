@@ -7,11 +7,10 @@ När användaren går vidare ska ett tackmeddelande visas, samt möjlighet att s
 Bokningen ska kunna öppnas både från startsidan och från den nya sidan, d.v.s. på båda de platser där rum finns. */
 
 // Here im going to do the script for the booking-section
-/*Import challenges function from fetchchallenges.js*/
+//Import challenges function from fetchchallenges.js
 import { challenges } from "./fetchChallenges.js";
-/*Import renderchallenges function from fetchchallenges.js*/
-import { renderChallenges } from "./fetchChallenges.js";
 
+//Declaring global variables containing html elements
 const bookingContainer = document.querySelector(".booking-container");
 
 const bookingButtonOne = document.querySelector(".booking-container__button");
@@ -21,78 +20,60 @@ const submitBookingButton = document.querySelector(
 );
 
 const challengeTemplate = document.getElementById("card-template");
-/*Fetch Dates api */
-console.log(challenges);
 
-/*challenges.forEach((obj) => console.log(obj.id));*/
-
-/*challenges.forEach((obj) => {
-  const challengeIds = obj.id.toString();
-  console.log(challengeIds);
-
-  async function fetchDatesApi() {
-    const res = await fetch(
-      `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${inputDate}&challenge=${challengeIds}`
+//Function that fetches data from api
+async function fetchData(url) {
+  const response = await fetch(url);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    throw new Error(
+      `Something went wrong with the request. Error code: ${response.status} ${response.statusText}`
     );
-    const data = await res.json();
-    return data;
-  
-
-  console.log(fetchDatesApi());
-});*/
-for (let i = 0; i < 30; i++) {
-  const today = new Date();
-  const tomorrow = new Date(today);
-  tomorrow.setDate(today.getDate() + i);
-  console.log(tomorrow.toISOString().split("T")[0]);
+  }
 }
+//Declaring empty global variables
+let cardId;
 
+let dateApi;
+//Declaring variable and puts an array of all .sidescroll__btn inside
 let bookingBtn = document.querySelectorAll(".sidescroll__btn");
-
+//for loop that loops through bookingBtn array length
 for (let i = 0; i < bookingBtn.length; i++) {
+  // eventlistener that reacts to booking button on each card
   bookingBtn[i].addEventListener("click", () => {
+    //If statement that returns function if innertext of button is wrong
     if (bookingBtn[i].innerText === "Take challenge online") {
       return;
     }
-
-    console.log("button pressed");
+    //sets value of cardId to clicked .sideScroll__btn parent id
+    cardId = bookingBtn[i].parentElement.id;
+    //Changes style of element and adds class
     bookingContainer.style.display = "block";
     bookingContainer.classList.add("grow-in");
+    //Changes style of element and removes class
     document.querySelector(".body").style.overflow = "hidden";
-    console.log("button pressed");
+    document
+      .querySelector(".booking-container__step-one")
+      .classList.remove("invisible");
+    //For loop that creates 30 dates starting from todays date and forward
+    for (let i = 0; i < 30; i++) {
+      const today = new Date();
+      const comingDays = new Date(today);
+      comingDays.setDate(today.getDate() + i);
+      //Adds each date as option in booking-container__date
+      const dateOption = document.createElement("option");
+      dateOption.classList.add("booking-container__date");
+      dateOption.innerText = comingDays.toISOString().split("T")[0];
+      document
+        .querySelector(".booking-container__dateInput")
+        .appendChild(dateOption);
+    }
   });
 }
-
-/*challenges.forEach((button) => {
-  const template = challengeTemplate.content.cloneNode(true);
-  button = template.querySelector(".sidescroll__btn");
-
-  button.addEventListener("click", () => {
-    console.log("button pressed");
-    bookingContainer.style.display = "block";
-    bookingContainer.classList.add("grow-in");
-    document.querySelector(".body").style.overflow = "hidden";
-  });
-});*/
-
-//making a function that helps me close down the modal and enable scroll on the website once again.
-function escapeBooking() {
-  console.log("key pressed");
-  bookingContainer.style.display = "none";
-  document.querySelector(".body").style.overflow = "scroll";
-}
-
-//adding an forEach so that every button theres an eventlistener.
-
-//Making sure you can close the open modal with the esc butto
-document.body.addEventListener("keydown", (e) => {
-  if (e.key == "Escape") {
-    escapeBooking();
-  }
-});
-
-//Adding eventlistener which takes you from first step to second step.
-bookingButtonOne.addEventListener("click", () => {
+//Eventlistener function that reacts to click on "search available times" button
+bookingButtonOne.addEventListener("click", async () => {
+  //Adds and removes classes of elements
   document
     .querySelector(".booking-container__step-one")
     .classList.add("invisible");
@@ -104,9 +85,17 @@ bookingButtonOne.addEventListener("click", () => {
   document
     .querySelector(".booking-container__submit-button")
     .classList.add("fade-in");
+  //Sets variable value to the userinput of .booking-container__dateInput
+  let dateInput = document.querySelector(".booking-container__dateInput").value;
+  /*Adds variables into url and runs function fetchData then 
+puts return value into dateApi variable*/
+  dateApi = await fetchData(
+    `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
+  );
+  console.log(cardId);
+  console.log(dateApi.slots);
+  console.log(dateApi.date);
 });
-
-//Adding eventlistener which takes you from the second step to the final step (Thank you)
 
 submitBookingButton.addEventListener("click", () => {
   document
@@ -118,4 +107,38 @@ submitBookingButton.addEventListener("click", () => {
   document
     .querySelector(".booking-container__step-three")
     .classList.add("fade-in");
+});
+
+//Function to sort through challenges array
+/*challenges.forEach((obj) => console.log(obj.id));
+
+  challenges.forEach((obj) => {
+  const challengeIds = obj.id.toString();
+  console.log(challengeIds);*/
+
+//making a function that helps me close down the modal and enable scroll on the website once again.
+function escapeBooking() {
+  bookingContainer.style.display = "none";
+  document.querySelector(".body").style.overflow = "scroll";
+
+  document
+    .querySelector(".booking-container__step-one")
+    .classList.add("invisible");
+  document
+    .querySelector(".booking-container__step-two")
+    .classList.add("invisible");
+  document
+    .querySelector(".booking-container__step-three")
+    .classList.add("invisible");
+
+  document
+    .querySelectorAll(".booking-container__date")
+    .forEach((element) => element.remove());
+}
+
+//Making sure you can close the open modal with the esc butto
+document.body.addEventListener("keydown", (e) => {
+  if (e.key == "Escape") {
+    escapeBooking();
+  }
 });
