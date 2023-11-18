@@ -378,9 +378,15 @@ html {
 
 .zeroChallenges {
   display: none;
+  text-align: center;
+  margin: 100px auto;
   font-size: 45px;
   font-weight: 400;
-  margin-top: 100px;
+
+  @include breakpoint($large) {
+    margin-top: 183px;
+    margin-bottom: 0px;
+  }
 }
 
 .break {
