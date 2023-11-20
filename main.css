@@ -244,6 +244,7 @@ html {
   justify-content: center;
   gap: 38px;
   padding-top: 30px;
+  margin: 52px;
 }
 .ourChallenges__card {
   border-radius: 8px;
@@ -473,6 +474,12 @@ html {
 }
 .sidescroll::-webkit-scrollbar {
   display: none;
+}
+.sidescroll article:first-child {
+  margin-left: 52px;
+}
+.sidescroll article:last-child {
+  margin-right: 52px;
 }
 .sidescroll__card {
   border-radius: 8px;
