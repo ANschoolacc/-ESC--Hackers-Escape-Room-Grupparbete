@@ -25,7 +25,7 @@ export function renderChallenges(container, threeHighest) {
         const description = template.querySelector('.sidescroll__text');
         const button = template.querySelector('.sidescroll__btn')
         button.textContent = challenge.type === 'online' ? 'Take challenge online' : 'Book this room'
-        icon.classList.add(challenge.type === 'online' ? 'fa-house' : 'fa-laptop');
+        icon.classList.add(challenge.type === 'online' ? 'fa-laptop' : 'fa-house');
         card.id = challenge.id
         image.src = challenge.image // `${challenge.image}?image=${Math.floor(Math.random() * 16)}` to make image random
         h2.textContent = challenge.title;
