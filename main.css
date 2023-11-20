@@ -453,33 +453,25 @@ html {
   margin-top: 44px;
   overflow-x: scroll;
   padding: 10px 0px 10px 0px;
-  width: 100vw;
+  width: 100dvw;
   gap: 40px;
+}
+.sidescroll::before, .sidescroll::after {
+  content: "";
+  flex: 1;
 }
 @media screen and (min-width: 1200px) {
   .sidescroll {
-    align-items: center;
     margin-top: 87px;
-    overflow-x: auto;
-    padding: 10px 10px 10px 10px;
-    width: auto;
   }
 }
 @media screen and (min-width: 1650px) {
   .sidescroll {
     height: 600px;
-    justify-content: center;
-    width: 100vw;
   }
 }
 .sidescroll::-webkit-scrollbar {
   display: none;
-}
-.sidescroll article:first-child {
-  margin-left: 52px;
-}
-.sidescroll article:last-child {
-  margin-right: 52px;
 }
 .sidescroll__card {
   border-radius: 8px;
@@ -488,22 +480,6 @@ html {
   flex-direction: column;
   height: 446px;
   width: 363px;
-}
-.sidescroll__card--moreMarginLeft {
-  margin-left: 52px;
-}
-@media screen and (min-width: 1200px) {
-  .sidescroll__card--moreMarginLeft {
-    margin-left: 0px;
-  }
-}
-.sidescroll__card--moreMarginRight {
-  margin-right: 52px;
-}
-@media screen and (min-width: 1200px) {
-  .sidescroll__card--moreMarginRight {
-    margin-right: 0px;
-  }
 }
 .sidescroll__img {
   background-image: url("assets/image 2.png");
@@ -556,7 +532,9 @@ html {
   font-weight: 700;
   height: 44px;
   margin: 0 14px 14px 0;
-  width: 179.28px;
+  padding: 0 5px 0 5px;
+  width: fit-content;
+  min-width: 179.28px;
 }
 
 .break {
