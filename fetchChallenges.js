@@ -52,7 +52,7 @@ function createStars(parent, rating) {
     for (let i = 0; i < 5; i++) {
         const iTag = document.createElement('i');
         iTag.classList.add('fa-star', 'star');
-        if (checkHalfStar(rating, i)) {
+        if (i === Math.floor(rating)) {
             iTag.classList = 'fa-solid fa-star-half-stroke'
             parent.appendChild(iTag);
             continue
@@ -60,8 +60,4 @@ function createStars(parent, rating) {
         i < rating ? iTag.classList.add('fa-solid') : iTag.classList.add('fa-regular')
         parent.appendChild(iTag);
     }
-}
-
-function checkHalfStar(rating, i) {
-    return (rating.toString().includes('.') && (i + 0.5 === rating))
 }
