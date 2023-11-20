@@ -75,6 +75,7 @@ html {
   justify-content: center;
   gap: 38px;
   padding-top: 30px;
+  margin: 52px;
 
   &__card {
     border-radius: 8px;
@@ -289,6 +290,12 @@ html {
   }
   &::-webkit-scrollbar {
     display: none;
+  }
+  & article:first-child {
+    margin-left: 52px;
+  }
+  & article:last-child {
+    margin-right: 52px;
   }
   &__card {
     border-radius: 8px;
