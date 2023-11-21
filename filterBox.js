@@ -146,18 +146,14 @@ function filterData(challenges) {
 }
 
 function renderFilteredCards(filteredData) {
-  const container = [...document.querySelector(".ourChallenges").children];
-  const zeroChallenges = document.querySelector(".zeroChallenges");
-  const ids = [];
-  filteredData.forEach((challenge) => {
-    ids.push(challenge.id);
-  });
-  container.forEach((child) => {
-    if (!ids.includes(Number(child.id))) {
-      child.style.display = "none";
-    } else {
-      child.style.display = "";
-    }
-  });
-  zeroChallenges.style.display = filteredData.length === 0 ? "block" : "none";
+    const container = [...document.querySelector('.ourChallenges').children]
+    const zeroChallenges = document.querySelector(".zeroChallenges");
+    container.forEach(child => {
+        if (filteredData.map(challenge => challenge.id).includes(Number(child.id))) {
+            child.style.display = ''
+        } else {
+            child.style.display = 'none'
+        }
+    })
+    zeroChallenges.style.display = filteredData.length === 0 ? "block" : "none";
 }

@@ -75,6 +75,7 @@ html {
   justify-content: center;
   gap: 38px;
   padding-top: 30px;
+  margin: 52px;
 
   &__card {
     border-radius: 8px;
@@ -272,24 +273,25 @@ html {
   margin-top: 44px;
   overflow-x: scroll;
   padding: 10px 0px 10px 0px;
-  width: 100vw;
+  width: 100dvw;
   gap: 40px;
 
+  &::before , 
+  &::after {
+    content:'';
+    flex:1;
+  }
+
   @include breakpoint($xl) {
-    align-items: center;
     margin-top: 87px;
-    overflow-x: auto;
-    padding: 10px 10px 10px 10px;
-    width: auto;
   }
   @include breakpoint($xxl) {
     height: 600px;
-    justify-content: center;
-    width: 100vw;
   }
   &::-webkit-scrollbar {
     display: none;
   }
+
   &__card {
     border-radius: 8px;
     position: relative;
@@ -299,20 +301,7 @@ html {
     height: 446px;
     width: 363px;
   }
-  &__card--moreMarginLeft {
-    margin-left: 52px;
 
-    @include breakpoint($xl) {
-      margin-left: 0px;
-    }
-  }
-  &__card--moreMarginRight {
-    margin-right: 52px;
-
-    @include breakpoint($xl) {
-      margin-right: 0px;
-    }
-  }
   &__img {
     background-image: url("assets/image 2.png");
     background-position: center;
@@ -372,7 +361,9 @@ html {
     font-weight: 700;
     height: 44px;
     margin: 0 14px 14px 0;
-    width: 179.28px;
+    padding: 0 5px 0 5px;
+    width: fit-content;
+    min-width: 179.28px;
   }
 }
 
