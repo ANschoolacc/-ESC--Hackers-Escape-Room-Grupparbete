@@ -294,6 +294,7 @@ html {
 
   &__card {
     border-radius: 8px;
+    position: relative;
     box-shadow: 0 0 8px #b6bdb5;
     display: flex;
     flex-direction: column;
@@ -309,6 +310,13 @@ html {
     border-radius: 8px 8px 0px 0px;
     height: 219px;
     width: 363px;
+  }
+  &__icon {
+    color: rgba(255, 0, 0, 0.7);
+    font-size: 1.5rem;
+    position: absolute;
+    top: 15px;
+    right: 15px;
   }
   &__title {
     font-size: 28px;
@@ -356,6 +364,19 @@ html {
     padding: 0 5px 0 5px;
     width: fit-content;
     min-width: 179.28px;
+  }
+}
+
+.zeroChallenges {
+  display: none;
+  text-align: center;
+  margin: 100px auto;
+  font-size: 45px;
+  font-weight: 400;
+
+  @include breakpoint($large) {
+    margin-top: 183px;
+    margin-bottom: 0px;
   }
 }
 
@@ -501,3 +522,7 @@ html {
 }
 /*-----Footer section-----*/
 @import "footer";
+
+/*----booking section----*/
+
+@import "booking";

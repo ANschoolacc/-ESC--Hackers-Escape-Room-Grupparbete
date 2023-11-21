@@ -1,131 +1,122 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Startsida ESC Hacker Escape Rooms</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      src="https://kit.fontawesome.com/193a8b5258.js"
-      crossorigin="anonymous"
-    ></script>
-    <script src="fetchChallenges.js" type="module" defer></script>
-    <script src="filterBox.js" type="module" defer></script>
-    <script src="script.js" type="module" defer></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-    />
-    <!-- This is the link to the font awesome icons -->
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-  </head>
-  <body class="body">
-    <header class="header">
-      <div class="logoAndTitle">
-        <img
-          class="logoAndTitle__logo"
-          src="assets/image 4.png"
-          alt="ESC-Logo"
-        />
-        <h1 class="logoAndTitle__title">Hacker Escape Rooms</h1>
-        <button class="logoAndTitle__hamburgerBtn">
-          <img src="assets/Group 7.png" alt="" />
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Startsida ESC Hacker Escape Rooms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://kit.fontawesome.com/193a8b5258.js" crossorigin="anonymous"></script>
+  <script src="fetchChallenges.js" type="module" defer></script>
+  <script src="filterBox.js" type="module" defer></script>
+  <script src="script.js" type="module" defer></script>
+  <script src="booking.js" type="module" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <!-- This is the link to the font awesome icons -->
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+
+<body class="body">
+  <header class="header">
+    <div class="logoAndTitle">
+      <img class="logoAndTitle__logo" src="assets/image 4.png" alt="ESC-Logo" />
+      <h1 class="logoAndTitle__title">Hacker Escape Rooms</h1>
+      <button class="logoAndTitle__hamburgerBtn">
+        <img src="assets/Group 7.png" alt="" />
+      </button>
+    </div>
+
+    <ul class="navbar">
+      <li class="navbar__navItem">
+        <a href="ourChallenges.html">Play online</a>
+      </li>
+      <li class="navbar__navItem"><a href="">Play on-site</a></li>
+      <li class="navbar__navItem"><a href="index.html">The story</a></li>
+      <li class="navbar__navItem"><a href="index.html">Contact us</a></li>
+    </ul>
+    <section class="hamburgerMenu">
+      <div class="hamburgerMenu__menuCont">
+        <button class="hamburgerMenu__closeBtn">
+          <img src="assets/close.png" alt="Close button" />
         </button>
+        <ul class="hamburgerMenu__menu">
+          <li class="hamburgerMenu__item"><a href="">Play online</a></li>
+          <li class="hamburgerMenu__item"><a href="">Play on-site</a></li>
+          <li class="hamburgerMenu__item"><a href="">The story</a></li>
+          <li class="hamburgerMenu__item"><a href="">Contact us</a></li>
+        </ul>
       </div>
+    </section>
+  </header>
 
-      <ul class="navbar">
-        <li class="navbar__navItem">
-          <a href="ourChallenges.html">Play online</a>
-        </li>
-        <li class="navbar__navItem"><a href="">Play on-site</a></li>
-        <li class="navbar__navItem"><a href="index.html">The story</a></li>
-        <li class="navbar__navItem"><a href="index.html">Contact us</a></li>
-      </ul>
-      <section class="hamburgerMenu">
-        <div class="hamburgerMenu__menuCont">
-          <button class="hamburgerMenu__closeBtn">
-            <img src="assets/close.png" alt="Close button" />
-          </button>
-          <ul class="hamburgerMenu__menu">
-            <li class="hamburgerMenu__item"><a href="">Play online</a></li>
-            <li class="hamburgerMenu__item"><a href="">Play on-site</a></li>
-            <li class="hamburgerMenu__item"><a href="">The story</a></li>
-            <li class="hamburgerMenu__item"><a href="">Contact us</a></li>
-          </ul>
-        </div>
-      </section>
-    </header>
-
-    <main class="main">
-      <section class="filter">
-        <h2 class="filter__h2">Our challenges</h2>
-        <button class="filter__filterBoxOpenButton">Filter challenges</button>
-        <!-- This button should be hidden when filter box opens -->
-        <div class="filter__filterBox">
-          <!-- This box should be hidden if the filter challenges button is not pressed -->
-          <h3 class="filter__h3">Filter challenges</h3>
-          <button class="filter__closeButton">
-            X<!-- Img of the X button (remove placeholder X) -->
-          </button>
-          <div class="filter__filters">
-            <div class="filter__filterByType">
-              <h4 class="filter__h4">By type</h4>
-              <label>
-                <input type="checkbox" class="filter__onlineCheckbox" />
-                Include online challenges
-              </label>
-              <label>
-                <input type="checkbox" class="filter__onSiteCheckbox" />
-                Include on-site challenges
-              </label>
+  <main class="main">
+    <section class="filter">
+      <h2 class="filter__h2">Our challenges</h2>
+      <button class="filter__filterBoxOpenButton">Filter challenges</button>
+      <!-- This button should be hidden when filter box opens -->
+      <div class="filter__filterBox">
+        <!-- This box should be hidden if the filter challenges button is not pressed -->
+        <h3 class="filter__h3">Filter challenges</h3>
+        <button class="filter__closeButton">
+          X<!-- Img of the X button (remove placeholder X) -->
+        </button>
+        <div class="filter__filters">
+          <div class="filter__filterByType">
+            <h4 class="filter__h4">By type</h4>
+            <label>
+              <input type="checkbox" class="filter__onlineCheckbox" />
+              Include online challenges
+            </label>
+            <label>
+              <input type="checkbox" class="filter__onSiteCheckbox" />
+              Include on-site challenges
+            </label>
+          </div>
+          <div class="filter__filterByRating">
+            <h4 class="filter__h4">By rating</h4>
+            <div class="filter__stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
-            <div class="filter__filterByRating">
-              <h4 class="filter__h4">By rating</h4>
-              <div class="filter__stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-              <p class="filter__paragraph">to</p>
-              <div class="filter__stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-            <div class="filter__filterByTags">
-              <h4 class="filter__h4">By tags</h4>
-              <button class="filter__tagButton">Hacking</button>
-              <button class="filter__tagButton">SSH</button>
-              <button class="filter__tagButton">Web</button>
-              <button class="filter__tagButton">Coding</button>
-              <button class="filter__tagButton">CTF</button>
-              <button class="filter__tagButton">Linux</button>
-              <button class="filter__tagButton">Bash</button>
-              <button class="filter__tagButton">Javascript</button>
-              <button class="filter__tagButton">Electronics</button>
-              <button class="filter__tagButton">Phreaking</button>
-            </div>
-            <div class="filter__filterBySearch">
-              <h4 class="filter__h4">Or type to search for keyword</h4>
-              <input type="text" class="filter__inputFilter" />
+            <p class="filter__paragraph">to</p>
+            <div class="filter__stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
             </div>
           </div>
+          <div class="filter__filterByTags">
+            <h4 class="filter__h4">By tags</h4>
+            <button class="filter__tagButton">Hacking</button>
+            <button class="filter__tagButton">SSH</button>
+            <button class="filter__tagButton">Web</button>
+            <button class="filter__tagButton">Coding</button>
+            <button class="filter__tagButton">CTF</button>
+            <button class="filter__tagButton">Linux</button>
+            <button class="filter__tagButton">Bash</button>
+            <button class="filter__tagButton">Javascript</button>
+            <button class="filter__tagButton">Electronics</button>
+            <button class="filter__tagButton">Phreaking</button>
+          </div>
+          <div class="filter__filterBySearch">
+            <h4 class="filter__h4">Or type to search for keyword</h4>
+            <input type="text" class="filter__inputFilter" />
+          </div>
         </div>
-      </section>
-      <section class="ourChallenges">
 
       </section>
+      <section class="ourChallenges">
+      </section>
+      <h2 class="zeroChallenges">No matching challenges</h2>
     </main>
 
     <footer class="footer">
@@ -136,7 +127,43 @@
           quidem haec eo spectant haec quoque vos omnino desit illud quo solo
           felicitatis libertatisque perficiuntur.
         </p>
+
       </div>
+    </section>
+    <section class="ourChallenges">
+    </section>
+    <h2 class="zeroChallenges">No matching challenges</h2>
+  </main>
+
+  <footer class="footer">
+    <div class="about">
+      <h4 class="about__title">[Esc] Hacker Escape Rooms</h4>
+      <p class="about__text">
+        Quodsi haberent magnalia inter potentiam et divitias, et non illam
+        quidem haec eo spectant haec quoque vos omnino desit illud quo solo
+        felicitatis libertatisque perficiuntur.
+      </p>
+    </div>
+
+    <ul class="lowerNav lowerNav--marginLeft">
+      <h4 class="lowerNav__title">Site map</h4>
+      <li class="lowerNav__item"><a href="">The story</a></li>
+      <li class="lowerNav__item"><a href="">Contact Us</a></li>
+      <li class="lowerNav__item"><a href="">Legal</a></li>
+      <br />
+      <li class="lowerNav__item">
+        <a href="ourChallenges.html">Play online</a>
+      </li>
+      <li class="lowerNav__item"><a href="">Play on-site</a></li>
+    </ul>
+
+    <ul class="lowerNav lowerNav--marginRight">
+      <h4 class="lowerNav__title">Follow us on</h4>
+      <li class="lowerNav__item"><a href="">Facebook</a></li>
+      <li class="lowerNav__item"><a href="">Instagram</a></li>
+      <li class="lowerNav__item"><a href="">Twitter</a></li>
+    </ul>
+  </footer>
 
       <ul class="lowerNav lowerNav--marginLeft">
         <h4 class="lowerNav__title">Site map</h4>
@@ -158,21 +185,73 @@
       </ul>
     </footer>
     <template id="card-template">
-      <article class="sidescroll__card sidescroll__card--moreMarginRight">
+      <article class="sidescroll__card">
         <img class="sidescroll__img"></img>
+        <i class="fa-solid sidescroll__icon"></i>
         <h2 class="sidescroll__title">Title of room (on-site)</h2>
         <div class="sidescroll__rating">
           <div class="sidescroll__rating__stars">
-
-          </div>
-          <small class="sidescroll__participants">2-6 participants</small>
         </div>
-        <p class="sidescroll__text">
-          Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
-          nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
-        </p>
-        <button class="sidescroll__btn">Book this room</button>
-      </article>
-    </template>
-  </body>
+        <small class="sidescroll__participants">2-6 participants</small>
+      </div>
+      <p class="sidescroll__text">
+        Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
+        nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
+      </p>
+      <button class="sidescroll__btn">Book this room</button>
+    </article>
+  </template>
+
+  <!--This will be the section for the booking modals-->
+
+  <div class="booking-container">
+    <div class="booking-container__step-one">
+      <div class="booking-container__text">
+        <h1 class="booking-container__title">Book room "title of room" (step 1)</h1>
+        <h3 class="booking-container__sub-title">What date ould you like to come</h3>
+        <small class="booking-container__input-title">Date</small>
+        <select name="" class="booking-container__dateInput">
+
+        </select>
+      </div>
+      <div class="booking-container__button-div">
+        <button class="booking-container__button">Search available items</button>
+      </div>
+
+    </div>
+    <div class="booking-container__step-two invisible">
+      <div class="booking-container__text second-step">
+        <h1 class="booking-container__title">Book room "title of room" (step 2)</h1>
+        <small class="booking-container__input-title">Name</small>
+        <input type="text" class="booking-container__name-input">
+        <small class="booking-container__input-title">E-mail</small>
+        <input type="text" class="booking-container__e-mail-input">
+        <small class="booking-container__input-title">What time?</small>
+        <select name="" class="booking-container__select time">
+          <option value="first">Choose a time</option>
+          <option value="00:00">00:00</option>
+          <option value="01:00">01:00</option>
+          <option value="02:00">02:00</option>
+        </select>
+        <small class="booking-container__input-title">How many participants?</small>
+        <select name="" class="booking-container__select participants">
+          <option value="2">2 participants</option>
+          <option value="3">3 participants</option>
+          <option value="4">4 participants</option>
+          <option value="5">5 participants</option>
+        </select>
+      </div>
+      <div class="booking-container__button-div-two">
+        <button class="booking-container__submit-button">Submit booking</button>
+      </div>
+    </div>
+
+    <div class="booking-container__step-three invisible">
+      <h1 class="booking-container__title thank-you">Thank you!</h1>
+      <a href="" class="booking-continer__link">Back to challenges</a>
+    </div>
+  </div>
+
+  <!--This will be the end of the section for the booking modals-->
+</body>
 </html>
