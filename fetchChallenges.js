@@ -52,7 +52,7 @@ function createStars(parent, rating) {
     for (let i = 0; i < 5; i++) {
         const iTag = document.createElement('i');
         iTag.classList.add('fa-star', 'star');
-        if (i === Math.floor(rating)) {
+        if (i + 0.5 === rating) {
             iTag.classList = 'fa-solid fa-star-half-stroke'
             parent.appendChild(iTag);
             continue
