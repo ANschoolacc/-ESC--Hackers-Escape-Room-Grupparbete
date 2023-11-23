@@ -1,0 +1,53 @@
+.filter{
+    text-align: center;
+
+    &__filterBox{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        border: solid black 1px;
+        padding: 0em 0em;
+    }
+    &__h3{
+        position: absolute;
+        left: 0.8em;
+        top: -1em;
+        // padding-left: 1em;
+    }
+    &__filters{
+        display: flex;
+        margin-top: 4em;
+        margin-bottom: 2em;
+        justify-content: space-around;
+        // text-align: left;
+        padding: 0em 1em;
+    }
+    &__closeButton{
+        position: absolute;
+        filter: invert(1);
+        height: auto;
+        width: 1em;
+        right: 0.4em;
+        padding: 0.2em 0.2em;
+    }
+    &__filterByType{
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__filterByRating{
+        display: flex;
+        flex-direction: column;
+    }
+    &filter__stars{
+        display: flex;
+        flex-direction: row;
+    }
+
+    &___filterBySearch{
+    }
+
+    &__inputFilter{
+        margin-bottom: 2em;
+    }
+}
