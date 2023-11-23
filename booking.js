@@ -1,16 +1,5 @@
-/*När användaren klickar på “Book room” ska en ruta öppnas över allt annat, rutans innehåll byts ut i tre steg
-I första steget visas en input där användaren kan välja ett datum, samt en knapp för att gå vidare. När användaren går vidare ska ett anrop göras till API för att se vilka tider som finns lediga det angivna datumet
-
-I andra steget visas inputs för namn och e-post, samt två rullgardinsmenyer. I den första ska användaren kunna välja de tider som fanns tillgängliga, och i den andra hur många deltagare som ska medverka. Alternativen ska motsvara den data som hämtats från API. Slutligen även en knapp för att gå vidare.
-
-När användaren går vidare ska ett tackmeddelande visas, samt möjlighet att stänga ned rutan och återgå till listan över utmaningar
-Bokningen ska kunna öppnas både från startsidan och från den nya sidan, d.v.s. på båda de platser där rum finns. */
-
-// Here im going to do the script for the booking-section
 //Import challenges function from fetchchallenges.js
 import { challenges } from "./fetchChallenges.js";
-/*Import renderchallenges function from fetchchallenges.js*/
-import { renderChallenges } from "./fetchChallenges.js";
 
 //Declaring global variables containing html elements
 const bookingContainer = document.querySelector(".booking-container");
@@ -20,8 +9,6 @@ const bookingButtonOne = document.querySelector(".booking-container__button");
 const submitBookingButton = document.querySelector(
     ".booking-container__submit-button"
 );
-
-const challengeTemplate = document.getElementById("card-template");
 
 //Function that fetches data from api
 async function fetchData(url) {
@@ -38,33 +25,6 @@ async function fetchData(url) {
 let cardId;
 
 let dateApi;
-//Declaring variable and puts an array of all .sidescroll__btn inside
-/*Fetch Dates api */
-console.log(challenges);
-
-/*challenges.forEach((obj) => console.log(obj.id));*/
-
-challenges.forEach((obj) => {
-    const challengeIds = obj.id.toString();
-    console.log(challengeIds);
-
-    async function fetchDatesApi() {
-        const res = await fetch(
-            `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${inputDate}&challenge=${challengeIds}`
-        );
-        const data = await res.json();
-        return data;
-
-        console.log(fetchDatesApi());
-    }
-});
-
-for (let i = 0; i < 30; i++) {
-    const today = new Date();
-    const tomorrow = new Date(today);
-    tomorrow.setDate(today.getDate() + i);
-    console.log(tomorrow.toISOString().split("T")[0]);
-}
 
 let bookingBtn = document.querySelectorAll(".sidescroll__btn");
 //for loop that loops through bookingBtn array length
@@ -101,7 +61,9 @@ for (let i = 0; i < bookingBtn.length; i++) {
 
         //Getting the right challenge and id
         const challenge = challenges[i];
-        booking.challenge = i;
+
+        booking.challenge = parseInt(cardId);
+
         // function for creating participants
         getMaxAndMinParticipants(challenge);
         //function for making the titles correct
@@ -131,13 +93,9 @@ puts return value into dateApi variable*/
     dateApi = await fetchData(
         `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
     );
-
+  
     //giving the date key the correct value.
     booking.date = dateInput;
-
-    console.log(cardId);
-    console.log(dateApi.slots);
-    console.log(dateApi.date);
 
     createAvailableTimes(dateApi);
 });
@@ -160,8 +118,6 @@ submitBookingButton.addEventListener("click", async () => {
     booking.participants = parseInt(particiSelect.value);
     booking.time = timeInput.value;
 
-    console.log(booking);
-
     const res = await fetch(
         "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
         {
@@ -173,17 +129,9 @@ submitBookingButton.addEventListener("click", async () => {
         }
     );
     const dataBooking = await res.json();
-    console.log(dataBooking);
 });
 
-//Function to sort through challenges array
-/*challenges.forEach((obj) => console.log(obj.id));
-
-challenges.forEach((obj) => {
-const challengeIds = obj.id.toString();
-console.log(challengeIds);*/
-
-//making a function that helps me close down the modal and enable scroll on the website once again.
+//function that close down the modal and enable scroll on the website once again.
 function escapeBooking() {
     bookingContainer.style.display = "none";
     document.querySelector(".body").style.overflow = "scroll";
@@ -201,6 +149,11 @@ function escapeBooking() {
     document
         .querySelectorAll(".booking-container__date")
         .forEach((element) => element.remove());
+
+    document.querySelector(".time").innerHTML = "";
+    document.querySelector(".participants").innerHTML = "";
+
+    booking = {};
 }
 
 //Making sure you can close the open modal with the esc butto
@@ -217,7 +170,7 @@ const emailInput = document.querySelector(".booking-container__e-mail-input");
 const particiSelect = document.querySelector(".participants");
 const timeInput = document.querySelector(".time");
 //creating obj for the booking request
-const booking = {};
+let booking = {};
 
 //Creating a function that creates option for the participant selector.
 const createParticipants = function (minPar, maxPar) {
@@ -227,7 +180,6 @@ const createParticipants = function (minPar, maxPar) {
         participantOption.value = i;
         participantOption.innerText = i;
         particiSelect.appendChild(participantOption);
-        console.log(participantOption.value);
     }
 };
 
