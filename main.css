@@ -1051,27 +1051,40 @@ html {
   display: flex;
   flex-direction: column;
   border: solid black 1px;
-  padding: 0em 2em;
+  padding: 0em 0em;
 }
 .filter__h3 {
   position: absolute;
-  left: 0.2em;
+  left: 0.8em;
   top: -1em;
 }
 .filter__filters {
   display: flex;
   margin-top: 4em;
   margin-bottom: 2em;
+  justify-content: space-around;
+  padding: 0em 1em;
 }
 .filter__closeButton {
   position: absolute;
   filter: invert(1);
   height: auto;
   width: 1em;
-  right: 0;
+  right: 0.4em;
   padding: 0.2em 0.2em;
 }
 .filter__filterByType {
   display: flex;
   flex-direction: column;
+}
+.filter__filterByRating {
+  display: flex;
+  flex-direction: column;
+}
+.filterfilter__stars {
+  display: flex;
+  flex-direction: row;
+}
+.filter__inputFilter {
+  margin-bottom: 2em;
 }
