@@ -61,6 +61,7 @@ for (let i = 0; i < bookingBtn.length; i++) {
 
         //Getting the right challenge and id
         const challenge = challenges[i];
+
         booking.challenge = parseInt(cardId);
 
         // function for creating participants
@@ -92,7 +93,7 @@ puts return value into dateApi variable*/
     dateApi = await fetchData(
         `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
     );
-
+  
     //giving the date key the correct value.
     booking.date = dateInput;
 
@@ -179,7 +180,6 @@ const createParticipants = function (minPar, maxPar) {
         participantOption.value = i;
         participantOption.innerText = i;
         particiSelect.appendChild(participantOption);
-        //console.log(participantOption.value);
     }
 };
 
