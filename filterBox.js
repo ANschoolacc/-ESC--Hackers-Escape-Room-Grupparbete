@@ -53,10 +53,7 @@ function setSearchParams(key, value) {
             searchParams.delete(key);
         }
     });
-    const newRelativePath =
-        searchParams.toString().length > 0
-            ? window.location.pathname + "?" + searchParams.toString()
-            : window.location.pathname;
+    const newRelativePath = searchParams.toString().length > 0 ? window.location.pathname + "?" + searchParams.toString() : window.location.pathname;
     history.pushState(null, "", newRelativePath);
 }
 
@@ -149,11 +146,7 @@ function renderFilteredCards(filteredData) {
     const children = [...document.querySelector(".ourChallenges").children];
     const zeroChallenges = document.querySelector(".zeroChallenges");
     children.forEach((child) => {
-        if (
-            filteredData
-                .map((challenge) => challenge.id)
-                .includes(Number(child.id))
-        ) {
+        if (filteredData.map((challenge) => challenge.id).includes(Number(child.id))) {
             child.style.display = "";
         } else {
             child.style.display = "none";
