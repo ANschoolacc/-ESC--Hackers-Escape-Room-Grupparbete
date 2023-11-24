@@ -12,12 +12,12 @@ onSiteCheckbox.checked = searchParams.get("onsite") !== "false";
 
 //Event listeners for the filter options
 onlineCheckbox.addEventListener("change", () => {
-    setSearchParams(`online, ${onlineCheckbox.checked}`);
+    setSearchParams("online", onlineCheckbox.checked);
     filterData(challenges);
 });
 onSiteCheckbox.addEventListener("change", () => {
     filterData(challenges);
-    setSearchParams(`onsite, ${onSiteCheckbox.checked}`);
+    setSearchParams("onsite", onSiteCheckbox.checked);
 });
 tagButtons.forEach((button) => {
     searchParams.forEach((value, key) => {
@@ -31,9 +31,10 @@ tagButtons.forEach((button) => {
         button.classList.toggle("filter__tagButton--selected");
         filterData(challenges);
         setSearchParams(
-            `tags, ${[
-                ...document.querySelectorAll(".filter__tagButton--selected"),
-            ].map((button) => button.innerHTML.toLowerCase())}`
+            "tags",
+            [...document.querySelectorAll(".filter__tagButton--selected")].map(
+                (button) => button.innerHTML.toLowerCase()
+            )
         );
     });
 });
@@ -43,9 +44,8 @@ if (searchParams.size > 0) {
     filterData(challenges);
 }
 
-function setSearchParams(str) {
+function setSearchParams(key, value) {
     const searchParams = new URLSearchParams(window.location.search);
-    const [key, value] = str.split(", ");
     searchParams.set(key, value);
     const entries = [...searchParams.entries()];
     entries.forEach(([key, value]) => {
@@ -146,9 +146,9 @@ function filterData(challenges) {
 }
 
 function renderFilteredCards(filteredData) {
-    const container = [...document.querySelector(".ourChallenges").children];
+    const children = [...document.querySelector(".ourChallenges").children];
     const zeroChallenges = document.querySelector(".zeroChallenges");
-    container.forEach((child) => {
+    children.forEach((child) => {
         if (
             filteredData
                 .map((challenge) => challenge.id)
