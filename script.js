@@ -1,36 +1,20 @@
-/*Eventlistener that reacts to click on menu lines in mobilemode */
-document
-    .querySelector(".logoAndTitle__hamburgerBtn")
-    .addEventListener("click", () => {
-        /*Waits 130 ms and then adds class to element */
-        setTimeout(() => {
-            document
-                .querySelector(".hamburgerMenu__menuCont")
-                .classList.add("hamburgerMenu__menuCont--open");
-        }, 130);
+// Getting elements from DOM
+const hamburgerBtn = document.querySelector(".logoAndTitle__hamburgerBtn");
+const closeMenuBtn = document.querySelector(".hamburgerMenu__closeBtn");
+const hamburgerMenu = document.querySelector(".hamburgerMenu");
+const hamburgerMenuCont = document.querySelector(".hamburgerMenu__menuCont");
 
-        /*Adds class to element */
-        document.querySelector(".body").classList.add("body--openMenu");
-        /*Adds class to element */
-        document
-            .querySelector(".hamburgerMenu")
-            .classList.add("hamburgerMenu--active");
+// Adding event listeners
+hamburgerBtn.addEventListener("click", () => {
+  setTimeout(() => {
+    hamburgerMenuCont.classList.add("hamburgerMenu__menuCont--open");
+  }, 130);
+  hamburgerMenu.classList.add("hamburgerMenu--active");
+  document.body.classList.add("body--openMenu")
+});
 
-        /*Eventlistener that reacts to the X symbol in overlaymenu */
-        document
-            .querySelector(".hamburgerMenu__closeBtn")
-            .addEventListener("click", () => {
-                /*Removes class from element */
-                document
-                    .querySelector(".hamburgerMenu__menuCont")
-                    .classList.remove("hamburgerMenu__menuCont--open");
-                /*Removes class from element */
-                document
-                    .querySelector(".body")
-                    .classList.remove("body--openMenu");
-                /*Removes class from element */
-                document
-                    .querySelector(".hamburgerMenu")
-                    .classList.remove("hamburgerMenu--active");
-            });
-    });
+closeMenuBtn.addEventListener("click", () => {
+  hamburgerMenuCont.classList.remove("hamburgerMenu__menuCont--open");
+  hamburgerMenu.classList.remove("hamburgerMenu--active");
+  document.body.classList.remove("body--openMenu")
+});
