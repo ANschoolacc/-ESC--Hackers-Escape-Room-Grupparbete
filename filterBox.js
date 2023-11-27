@@ -24,19 +24,19 @@ onSiteCheckbox.addEventListener("change", () => {
 /*
 This function, getAllLabels, is used to extract all unique labels from an array of challenges. 
 It takes an array, challenges, as an argument. 
-The function uses the reduce method to iterate over each challenge in the array. For each challenge, it further iterates over each label in the challenge's labels array.
-If a label is not already included in the uniqueLabels array, it is added. This ensures that each label only appears once in the uniqueLabels array, even if it appears multiple times in the challenges array.
-Finally, the function returns the uniqueLabels array, which contains all unique labels from the challenges array.
+The function uses a Set to ensure uniqueness of labels. It iterates over each challenge in the array. 
+For each challenge, it further iterates over each label in the challenge's labels array.
+Each label is added to the Set, which automatically ensures that each label only appears once, even if it appears multiple times in the challenges array.
+Finally, the function converts the Set back into an array and returns it. This array contains all unique labels from the challenges array.
 */
 function getAllLabels(challenges) {
-    return challenges.reduce((uniqueLabels, challenge) => {
+    const uniqueLabels = new Set();
+    challenges.forEach((challenge) => {
         challenge.labels.forEach((label) => {
-            if (!uniqueLabels.includes(label)) {
-                uniqueLabels.push(label);
-            }
+            uniqueLabels.add(label);
         });
-        return uniqueLabels;
-    }, []);
+    });
+    return Array.from(uniqueLabels);
 }
 
 /*
