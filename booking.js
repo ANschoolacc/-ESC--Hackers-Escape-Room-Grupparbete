@@ -93,7 +93,7 @@ puts return value into dateApi variable*/
     dateApi = await fetchData(
         `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
     );
-  
+
     //giving the date key the correct value.
     booking.date = dateInput;
 
@@ -129,6 +129,7 @@ submitBookingButton.addEventListener("click", async () => {
         }
     );
     const dataBooking = await res.json();
+    console.log(dataBooking);
 });
 
 //function that close down the modal and enable scroll on the website once again.
@@ -208,3 +209,21 @@ function createAvailableTimes(obj) {
         timeSelect.appendChild(timeOption);
     }
 }
+
+//function to get the button for exiting
+function getEscapeBtn() {
+    const xBtn = document.querySelectorAll("#x-symbol");
+    return xBtn;
+}
+
+//function so that you can leave the modal via x-button
+function leaveBookingFunction() {
+    const xBtn = getEscapeBtn();
+
+    xBtn.forEach((button) => {
+        button.addEventListener("click", () => {
+            escapeBooking();
+        });
+    });
+}
+leaveBookingFunction();
