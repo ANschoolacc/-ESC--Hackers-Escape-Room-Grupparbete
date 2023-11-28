@@ -78,11 +78,7 @@ function addEventListenersToButtons(tagButtons) {
         button.addEventListener("click", () => {
             button.classList.toggle("filter__tagButton--selected");
             filterData(challenges);
-            setSearchParams(
-                `tags, ${[...document.querySelectorAll(".filter__tagButton--selected")].map(
-                    (button) => button.innerHTML.toLowerCase()
-                )}`
-            );
+            setSearchParams('tags', tagButtons.filter(button => button.classList.contains('filter__tagButton--selected')).map(button => button.innerHTML.toLowerCase()).join('+'))
         });
     });
 }
@@ -106,7 +102,7 @@ function setSearchParams(key, value) {
             searchParams.delete(key);
         }
     });
-    const newRelativePath = searchParams.toString().length > 0 ? window.location.pathname + "?" + searchParams.toString() : window.location.pathname;
+    const newRelativePath = searchParams.size > 0 ? window.location.pathname + "?" + decodeURIComponent(searchParams) : window.location.pathname;
     history.pushState(null, "", newRelativePath);
 }
 
