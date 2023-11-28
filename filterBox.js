@@ -11,12 +11,12 @@ onSiteCheckbox.checked = searchParams.get("onsite") !== "false";
 
 //Event listeners for the filter options
 onlineCheckbox.addEventListener("change", () => {
-    setSearchParams(`online, ${onlineCheckbox.checked}`);
+    setSearchParams("online", onlineCheckbox.checked);
     filterData(challenges);
 });
 onSiteCheckbox.addEventListener("change", () => {
     filterData(challenges);
-    setSearchParams(`onsite, ${onSiteCheckbox.checked}`);
+    setSearchParams("onsite", onSiteCheckbox.checked);
 });
 
 /*
@@ -34,6 +34,7 @@ function getAllLabels(challenges) {
             uniqueLabels.add(label);
         });
     });
+  
     return Array.from(uniqueLabels);
 }
 
@@ -96,9 +97,8 @@ if (searchParams.size > 0) {
     filterData(challenges);
 }
 
-function setSearchParams(str) {
+function setSearchParams(key, value) {
     const searchParams = new URLSearchParams(window.location.search);
-    const [key, value] = str.split(", ");
     searchParams.set(key, value);
     const entries = [...searchParams.entries()];
     entries.forEach(([key, value]) => {
@@ -106,10 +106,7 @@ function setSearchParams(str) {
             searchParams.delete(key);
         }
     });
-    const newRelativePath =
-        searchParams.toString().length > 0
-            ? window.location.pathname + "?" + searchParams.toString()
-            : window.location.pathname;
+    const newRelativePath = searchParams.toString().length > 0 ? window.location.pathname + "?" + searchParams.toString() : window.location.pathname;
     history.pushState(null, "", newRelativePath);
 }
 
@@ -193,9 +190,9 @@ function filterData(challenges) {
 }
 
 function renderFilteredCards(filteredData) {
-    const container = [...document.querySelector(".ourChallenges").children];
+    const children = [...document.querySelector(".ourChallenges").children];
     const zeroChallenges = document.querySelector(".zeroChallenges");
-    container.forEach((child) => {
+    children.forEach((child) => {
         if (filteredData.map((challenge) => challenge.id).includes(Number(child.id))) {
             child.style.display = "";
         } else {
