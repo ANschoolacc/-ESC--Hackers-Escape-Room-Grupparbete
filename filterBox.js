@@ -1,6 +1,6 @@
 import { challenges } from "./fetchChallenges.js";
 
-let tagButtons;
+/*let tagButtons;*/
 
 //Getting DOM elements to be used globally
 const onlineCheckbox = document.querySelector(".filter__onlineCheckbox");
@@ -40,24 +40,25 @@ function getAllLabels(challenges) {
 }
 
 /*
-This function, createButtonsForLabels, creates a button for each label in the provided array and appends them to a container in the DOM. 
+This function, createButtonsForChallenges, creates a button for each label in the provided array and appends them to a container in the DOM. 
 It takes an array, labels, as an argument. 
 For each label in the array, it creates a new button element, sets its text content to the label, adds a CSS class for styling, and appends it to the container. 
 After creating all the buttons, it selects them from the DOM and assigns them to the global variable 'tagButtons'. 
 Finally, it calls the 'addEventListenersToButtons' function, passing 'tagButtons' as an argument.
 */
-function createButtonsForLabels(labels) {
+function createButtonsForChallenges(labels) {
     const buttonsContainer = document.querySelector(".filter__filterByTags");
+    const tagButtons = [];
 
     labels.forEach((label) => {
         const button = document.createElement("button");
         button.textContent = label;
         button.classList.add("filter__tagButton");
         buttonsContainer.appendChild(button);
+        tagButtons.push(button);
     });
 
-    tagButtons = document.querySelectorAll(".filter__tagButton");
-    addEventListenersToButtons(tagButtons);
+    return tagButtons;
 }
 
 /*
@@ -89,7 +90,8 @@ function addEventListenersToButtons(tagButtons) {
 }
 
 const uniqueLabels = getAllLabels(challenges);
-createButtonsForLabels(uniqueLabels);
+const tagButtons = createButtonsForChallenges(uniqueLabels);
+addEventListenersToButtons(tagButtons);
 
 //Filter challenges on page load if search params exist
 if (searchParams.size > 0) {
