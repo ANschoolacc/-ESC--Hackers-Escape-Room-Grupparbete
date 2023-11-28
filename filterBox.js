@@ -1,7 +1,5 @@
 import { challenges } from "./fetchChallenges.js";
 
-/*let tagButtons;*/
-
 //Getting DOM elements to be used globally
 const onlineCheckbox = document.querySelector(".filter__onlineCheckbox");
 const onSiteCheckbox = document.querySelector(".filter__onSiteCheckbox");
@@ -88,6 +86,7 @@ function addEventListenersToButtons(tagButtons) {
     });
 }
 
+//Create tag buttons on page load and add event listeners
 const uniqueLabels = getAllLabels(challenges);
 const tagButtons = createButtonsForChallenges(uniqueLabels);
 addEventListenersToButtons(tagButtons);
