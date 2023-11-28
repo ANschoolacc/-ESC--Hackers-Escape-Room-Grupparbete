@@ -1043,6 +1043,9 @@ html {
   margin-top: 30px;
   margin-right: 25px;
 }
+.top-container i:hover {
+  cursor: pointer;
+}
 
 @keyframes fadeIn {
   0% {
