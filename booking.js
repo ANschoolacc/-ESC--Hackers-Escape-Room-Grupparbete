@@ -93,7 +93,7 @@ puts return value into dateApi variable*/
     dateApi = await fetchData(
         `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
     );
-  
+
     //giving the date key the correct value.
     booking.date = dateInput;
 
@@ -129,6 +129,7 @@ submitBookingButton.addEventListener("click", async () => {
         }
     );
     const dataBooking = await res.json();
+    console.log(dataBooking);
 });
 
 //function that close down the modal and enable scroll on the website once again.
@@ -156,19 +157,18 @@ function escapeBooking() {
     booking = {};
 }
 
-//Making sure you can close the open modal with the esc butto
+//Making sure you can close the open modal with the esc button
 document.body.addEventListener("keydown", (e) => {
     if (e.key == "Escape") {
         escapeBooking();
     }
 });
 
-//section for later usage
-
 const nameInput = document.querySelector(".booking-container__name-input");
 const emailInput = document.querySelector(".booking-container__e-mail-input");
 const particiSelect = document.querySelector(".participants");
 const timeInput = document.querySelector(".time");
+
 //creating obj for the booking request
 let booking = {};
 
@@ -208,3 +208,21 @@ function createAvailableTimes(obj) {
         timeSelect.appendChild(timeOption);
     }
 }
+
+//function to get the button for exiting
+function getEscapeBtn() {
+    const xBtn = document.querySelectorAll("#x-symbol");
+    return xBtn;
+}
+
+//function so that you can leave the modal via x-button
+function leaveBookingFunction() {
+    const xBtn = getEscapeBtn();
+
+    xBtn.forEach((button) => {
+        button.addEventListener("click", () => {
+            escapeBooking();
+        });
+    });
+}
+leaveBookingFunction();
