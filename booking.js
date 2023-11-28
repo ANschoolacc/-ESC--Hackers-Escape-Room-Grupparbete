@@ -157,19 +157,18 @@ function escapeBooking() {
     booking = {};
 }
 
-//Making sure you can close the open modal with the esc butto
+//Making sure you can close the open modal with the esc button
 document.body.addEventListener("keydown", (e) => {
     if (e.key == "Escape") {
         escapeBooking();
     }
 });
 
-//section for later usage
-
 const nameInput = document.querySelector(".booking-container__name-input");
 const emailInput = document.querySelector(".booking-container__e-mail-input");
 const particiSelect = document.querySelector(".participants");
 const timeInput = document.querySelector(".time");
+
 //creating obj for the booking request
 let booking = {};
 
