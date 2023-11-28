@@ -1,2 +1,6 @@
+<<<<<<< HEAD
 
 
+=======
+**/node_modules
+>>>>>>> e9474a2 (added gitignore for nodemodules)
