@@ -40,11 +40,10 @@ function getAllLabels(challenges) {
 }
 
 /*
-This function, createButtonsForChallenges, creates a button for each label in the provided array and appends them to a container in the DOM. 
+This function, createButtonsForChallenges, creates a button for each label in the provided array, appends them to a container in the DOM, and returns an array of the created button elements.
 It takes an array, labels, as an argument. 
 For each label in the array, it creates a new button element, sets its text content to the label, adds a CSS class for styling, and appends it to the container. 
-After creating all the buttons, it selects them from the DOM and assigns them to the global variable 'tagButtons'. 
-Finally, it calls the 'addEventListenersToButtons' function, passing 'tagButtons' as an argument.
+Finally, it returns an array of the created button elements.
 */
 function createButtonsForChallenges(labels) {
     const buttonsContainer = document.querySelector(".filter__filterByTags");
