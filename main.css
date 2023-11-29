@@ -835,14 +835,15 @@ html {
 /*----booking section----*/
 .booking-container {
   display: none;
-  z-index: 3;
-  position: fixed;
-  top: 100px;
-  left: 23px;
-  right: 23px;
-  bottom: 100px;
-  background-color: #fff;
   border: solid gray 2px;
+  position: fixed;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  overflow: auto;
+  width: 90%;
+  height: 90%;
+  --webkit-overflow-scrolling: touch;
 }
 @media screen and (min-width: 1200px) {
   .booking-container {
@@ -887,7 +888,8 @@ html {
   }
 }
 .booking-container__dateInput {
-  width: 260px;
+  width: 80%;
+  max-width: 260px;
   font-size: 24px;
   font-weight: 400;
   padding: 10px;
@@ -923,11 +925,12 @@ html {
   margin-left: 20px;
 }
 .booking-container__input-date {
-  width: 200px;
+  width: 80%;
   height: 30px;
   padding: 5px;
   border-radius: 5px;
   border: solid lightgrey;
+  max-width: 200px;
 }
 .booking-container__button {
   background-color: #e3170a;
@@ -938,10 +941,17 @@ html {
   font-size: 0.7rem;
   font-weight: 700;
   height: 66px;
-  width: 308px;
+  width: 80%;
+  max-width: 308px;
   float: right;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
+}
+@media screen and (max-width: 500px) {
+  .booking-container__button {
+    align-self: center;
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 .booking-container__step-two {
   width: 100%;
@@ -959,14 +969,16 @@ html {
   width: 300px;
 }
 .booking-container__name-input {
-  width: 300px;
+  width: 80%;
+  max-width: 300px;
   height: 30px;
   padding: 5px;
   border-radius: 5px;
   border: solid lightgrey;
 }
 .booking-container__e-mail-input {
-  width: 300px;
+  width: 80%;
+  max-width: 300px;
   height: 30px;
   padding: 5px;
   border-radius: 5px;
@@ -988,10 +1000,17 @@ html {
   font-size: 0.7rem;
   font-weight: 700;
   height: 66px;
-  width: 308px;
+  width: 80%;
+  max-width: 308px;
   float: right;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
+}
+@media screen and (max-width: 500px) {
+  .booking-container__submit-button {
+    align-self: center;
+    margin-right: 0;
+    margin-left: 0;
+  }
 }
 .booking-container__step-three {
   width: 100%;

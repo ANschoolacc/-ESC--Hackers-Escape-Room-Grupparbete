@@ -1,13 +1,14 @@
 .booking-container {
   display: none;
-  z-index: 3;
+  border: solid gray 2px; 
   position: fixed;
-  top: 100px;
-  left: 23px;
-  right: 23px;
-  bottom: 100px;
-  background-color: #fff;
-  border: solid gray 2px;
+  inset: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  overflow: auto;
+  width: 90%;
+  height: 90%;
+  --webkit-overflow-scrolling: touch;
 
   @include breakpoint($xl) {
     width: 1178px;
@@ -50,7 +51,8 @@
   }
 
   &__dateInput {
-    width: 260px;
+    width: 80%;
+    max-width: 260px;
     font-size: 24px;
     font-weight: 400;
     padding: 10px;
@@ -93,11 +95,12 @@
   }
 
   &__input-date {
-    width: 200px;
+    width: 80%;
     height: 30px;
     padding: 5px;
     border-radius: 5px;
     border: solid lightgrey;
+    max-width: 200px;
   }
 
   &__button {
@@ -109,10 +112,15 @@
     font-size: 0.7rem;
     font-weight: 700;
     height: 66px;
-    width: 308px;
+    width: 80%;
+    max-width: 308px;
     float: right;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+    @media screen and (max-width: 500px) {
+      align-self: center;
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 
   &__step-two {
@@ -135,7 +143,8 @@
   }
 
   &__name-input {
-    width: 300px;
+    width: 80%;
+    max-width: 300px;
     height: 30px;
     padding: 5px;
     border-radius: 5px;
@@ -143,7 +152,8 @@
   }
 
   &__e-mail-input {
-    width: 300px;
+    width: 80%;
+    max-width: 300px;
     height: 30px;
     padding: 5px;
     border-radius: 5px;
@@ -167,10 +177,15 @@
     font-size: 0.7rem;
     font-weight: 700;
     height: 66px;
-    width: 308px;
+    width: 80%;
+    max-width: 308px;
     float: right;
-    margin-right: 20px;
-    margin-bottom: 20px;
+    margin: 20px;
+    @media screen and (max-width: 500px) {
+      align-self: center;
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 
   &__step-three {
