@@ -135,7 +135,7 @@ submitBookingButton.addEventListener("click", async () => {
 //function that close down the modal and enable scroll on the website once again.
 function escapeBooking() {
     bookingContainer.style.display = "none";
-    document.querySelector(".body").style.overflow = "scroll";
+    document.querySelector(".body").style.overflow = "";
 
     document
         .querySelector(".booking-container__step-one")
