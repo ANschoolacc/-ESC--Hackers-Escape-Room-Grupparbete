@@ -1040,6 +1040,8 @@ html {
   flex-direction: row-reverse;
 }
 .top-container i {
+  width: fit-content;
+  height: fit-content;
   margin-top: 30px;
   margin-right: 25px;
 }
