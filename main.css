@@ -838,13 +838,6 @@ html {
   font-size: 32px;
 }
 
-/* .booking {
-  position: absolute;
-  inset: 50%;
-  transform: translate(-50%, -50%);
-  width: 100dvw;
-  height: 100dvh;
-} */
 .booking-container {
   display: none;
   position: fixed;
@@ -852,6 +845,10 @@ html {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  /*@include breakpoint($large) {
+      font-size: 2em;
+      max-width: 900px;
+  }*/
 }
 @media screen and (min-width: 1200px) {
   .booking-container {
@@ -951,13 +948,28 @@ html {
   justify-content: flex-start;
   margin-left: 20px;
 }
-.booking-container__input-date {
+.booking-container__title {
+  max-width: 440px;
+  font-size: 1.5em;
+  font-weight: 400;
+  margin-top: 10px;
+}
+@media screen and (min-width: 740px) {
+  .booking-container__title {
+    max-width: 700px;
+  }
+}
+.booking-container__dateInput {
   width: 80%;
   height: 30px;
   padding: 5px;
   border-radius: 5px;
   border: solid lightgrey;
   max-width: 200px;
+}
+.booking-container__dateInput::-webkit-outer-spin-button, .booking-container__dateInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .booking-container__button {
   background-color: #e3170a;
@@ -1003,8 +1015,14 @@ html {
 .booking-container .invisible {
   display: none;
 }
-.booking-container__select {
-  width: 300px;
+.booking-container__sub-title {
+  font-size: 1em;
+  font-weight: 400;
+}
+@media screen and (min-width: 1080px) {
+  .booking-container__sub-title {
+    font-size: 1em;
+  }
 }
 .booking-container__name-input {
   width: 80%;
@@ -1075,12 +1093,143 @@ html {
   justify-content: flex-end;
   height: 1fr;
 }
+.booking-container__button-div__input-title {
+  font-size: 0.8em;
+  font-weight: 700;
+}
+@media screen and (min-width: 1080px) {
+  .booking-container__button-div__input-title {
+    font-size: 1em;
+  }
+}
+.booking-container__button-div__dateInput {
+  width: 260px;
+  font-size: 24px;
+  font-weight: 400;
+  padding: 10px;
+  overflow: auto;
+  white-space: nowrap;
+}
+.booking-container__button-div .thank-you {
+  font-size: 2em;
+  margin-bottom: 50px;
+}
+@media screen and (min-width: 1080px) {
+  .booking-container__button-div .thank-you {
+    font-size: 2.5em;
+  }
+}
+.booking-container__button-div a {
+  color: #36769d;
+  text-decoration: underline;
+}
+.booking-container__button-div a:visited {
+  color: #36769d;
+}
+.booking-container__button-div__step-one {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.booking-container__button-div__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+.booking-container__button-div__input-date {
+  width: 200px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid lightgrey;
+}
+.booking-container__button-div__button {
+  background-color: #e3170a;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  height: 66px;
+  width: 308px;
+  float: right;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.booking-container__button-div__step-two {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.booking-container__button-div .second-step {
+  gap: 10px;
+}
+.booking-container__button-div .invisible {
+  display: none;
+}
+.booking-container__button-div__select {
+  width: 300px;
+}
+.booking-container__button-div__name-input {
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid lightgrey;
+}
+.booking-container__button-div__e-mail-input {
+  width: 300px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid lightgrey;
+}
+.booking-container__button-div__select {
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 5px;
+  border: solid lightgrey;
+}
+.booking-container__button-div__submit-button {
+  background-color: #e3170a;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  height: 66px;
+  width: 308px;
+  float: right;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+.booking-container__button-div__step-three {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+}
+.booking-container__button-div__button-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 1fr;
+}
 @media screen and (min-width: 740px) {
-  .booking-container__button-div {
+  .booking-container__button-div__button-div {
     height: 100%;
   }
 }
-.booking-container__button-div-two {
+.booking-container__button-div__button-div-two {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -1088,34 +1237,30 @@ html {
   height: 100%;
 }
 @media screen and (min-width: 740px) {
-  .booking-container__button-div-two {
+  .booking-container__button-div__button-div-two {
     height: 100%;
   }
 }
-
-.grow-in {
+.booking-container .grow-in {
   animation: growIn 0.1s linear 1 normal forwards;
 }
-
-.fade-in {
+.booking-container .fade-in {
   animation: fadeIn 0.15s ease-in 1 normal forwards;
 }
-
-.top-container {
+.booking-container .top-container {
   height: 30px;
   display: flex;
   flex-direction: row-reverse;
 }
-.top-container i {
+.booking-container .top-container i {
   width: fit-content;
   height: fit-content;
   margin-top: 30px;
   margin-right: 25px;
 }
-.top-container i:hover {
+.booking-container .top-container i:hover {
   cursor: pointer;
 }
-
 @keyframes fadeIn {
   0% {
     opacity: 0.3;

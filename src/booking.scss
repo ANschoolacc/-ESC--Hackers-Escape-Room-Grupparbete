@@ -112,6 +112,7 @@
     flex-direction: column;
     justify-content: flex-start;
     margin-left: 20px;
+}
 
     &__title {
         max-width: 440px;
@@ -122,8 +123,9 @@
         @include breakpoint($small) {
             max-width: 700px;
         }
+    }
 
-  &__input-date {
+  &__dateInput {
     width: 80%;
     height: 30px;
     padding: 5px;
@@ -131,6 +133,12 @@
     border: solid lightgrey;
     max-width: 200px;
   }
+
+  &__dateInput::-webkit-outer-spin-button,
+  &__dateInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
   &__button {
     background-color: #e3170a;
@@ -176,11 +184,11 @@
     display: none;
   }
 
-        @include breakpoint($large) {
+        /*@include breakpoint($large) {
             font-size: 2em;
             max-width: 900px;
-        }
-    }
+        }*/
+    
 
     &__sub-title {
         font-size: 1em;
@@ -471,4 +479,5 @@
     100% {
         scale: 100%;
     }
+}
 }
