@@ -89,7 +89,7 @@ bookingButtonOne.addEventListener("click", async () => {
         ".booking-container__dateInput"
     ).value;
     /*Adds variables into url and runs function fetchData then 
-puts return value into dateApi variable*/
+    puts return value into dateApi variable*/
     dateApi = await fetchData(
         `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
     );
@@ -176,7 +176,7 @@ let booking = {};
 const createParticipants = function (minPar, maxPar) {
     for (let i = minPar; i <= maxPar; i++) {
         const participantOption = document.createElement("option");
-        participantOption.classList.add("particiOption");
+        participantOption.classList.add("partOption");
         participantOption.value = i;
         participantOption.innerText = i;
         particiSelect.appendChild(participantOption);
@@ -204,6 +204,7 @@ function createAvailableTimes(obj) {
     for (let i = 0; i < obj.slots.length; i++) {
         const timeSelect = document.querySelector(".time");
         const timeOption = document.createElement("option");
+        timeOption.classList.add("timeOption");
         timeOption.innerText = obj.slots[i];
         timeSelect.appendChild(timeOption);
     }
