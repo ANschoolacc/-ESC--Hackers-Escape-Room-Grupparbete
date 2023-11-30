@@ -3,7 +3,8 @@ describe("Booking Modal Test", () => {
         // Visit the URL of your booking page
         cy.visit("http://127.0.0.1:5501/ourChallenges.html?online=false");
 
-        // Click on the first booking button
+        // Click on the first booking button¨
+        cy.get(".sidescroll__btn").should("be.visible");
         cy.get(".sidescroll__btn").first().click();
 
         // Assert that the booking modal is visible
@@ -21,7 +22,9 @@ describe("Booking Modal Test", () => {
         cy.get(".booking-container__step-one").should("not.visible");
         cy.get(".booking-container__step-three").should("be.visible");
 
+        //can trie either to leave with esc or press the esc button
         cy.get(".booking-continer__link").click();
+        //cy.get("body").type("{esc}");
 
         cy.get(".booking-container__step-two").should("not.visible");
         cy.get(".booking-container__step-one").should("not.visible");
