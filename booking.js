@@ -31,7 +31,6 @@ let bookingBtn = document.querySelectorAll(".sidescroll__btn");
 for (let i = 0; i < bookingBtn.length; i++) {
     // eventlistener that reacts to booking button on each card
     bookingBtn[i].addEventListener("click", () => {
-
         //If statement that returns function if innertext of button is wrong
         if (bookingBtn[i].innerText === "Take challenge online") {
             return;
@@ -39,13 +38,15 @@ for (let i = 0; i < bookingBtn.length; i++) {
 
         /*Declaring variable as date input then setting the 
         starting value of date select to today*/
-        const dateInput = document.querySelector(".booking-container__dateInput");
+        const dateInput = document.querySelector(
+            ".booking-container__dateInput"
+        );
         dateInput.valueAsDate = new Date();
 
         /*Declaring variable to todays date with correct format, 
         then sets new attribute to dateinput with a minimum date of today.*/
-        const today = new Date().toISOString().split('T')[0];
-        document.getElementsByName("date")[0].setAttribute('min', today);
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementsByName("date")[0].setAttribute("min", today);
 
         //sets value of cardId to clicked .sideScroll__btn parent id
         cardId = bookingBtn[i].parentElement.id;
@@ -73,10 +74,9 @@ for (let i = 0; i < bookingBtn.length; i++) {
 }
 //Eventlistener function that reacts to click on "search available times" button
 bookingButtonOne.addEventListener("click", async () => {
-
-     //Sets variable value to the users input of .booking-container__dateInput
+    //Sets variable value to the users input of .booking-container__dateInput
     let dateValue = document.querySelector(
-    ".booking-container__dateInput"
+        ".booking-container__dateInput"
     ).value;
 
     //Adds and removes classes of elements
@@ -92,7 +92,7 @@ bookingButtonOne.addEventListener("click", async () => {
         .querySelector(".booking-container__submit-button")
         .classList.add("fade-in");
     //Sets variable value to the userinput of .booking-container__dateInput
-    
+
     /*Adds variables into url and runs function fetchData then 
     puts return value into dateApi variable*/
     dateApi = await fetchData(
