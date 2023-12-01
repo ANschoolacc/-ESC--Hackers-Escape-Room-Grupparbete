@@ -4,8 +4,8 @@ describe("Booking Modal Test", () => {
         cy.visit("http://127.0.0.1:5501/ourChallenges.html?online=false");
 
         // Click on the first booking button¨
-        cy.get(".sidescroll__btn").should("be.visible");
-        cy.get(".sidescroll__btn").first().click();
+        cy.get(".bookingBtn").should("be.visible");
+        cy.get(".bookingBtn").first().click();
 
         // Assert that the booking modal is visible
         cy.get(".booking-container").should("be.visible");
