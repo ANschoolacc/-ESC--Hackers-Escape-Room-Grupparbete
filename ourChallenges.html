@@ -51,63 +51,53 @@
 </header>
 
 <main class="main">
-    <section class="filter">
+	<section class="filter">
 		<h2 class="filter__h2">Our challenges</h2>
-		<button class="filter__filterBoxOpenButton">Filter challenges</button>
-		<!-- This button should be hidden when filter box opens -->
-		<div class="filter__filterBox">
-			<!-- This box should be hidden if the filter challenges button is not pressed -->
-			<h3 class="filter__h3">Filter challenges</h3>
-        <img src="assets/close.png" alt="" class="filter__closeButton">
-		<div class="filter__filters">
-			<div class="filter__filterByType">
-				<h4 class="filter__h4">By type</h4>
-				<label>
-					<input type="checkbox" class="filter__onlineCheckbox" />
-					Include online challenges
-				</label>
-				<label>
-					<input type="checkbox" class="filter__onSiteCheckbox" />
-					Include on-site challenges
-				</label>
+		<button class="filter__filterBoxOpenButton">Filter challenges</button> <!-- This button should be hidden when filter box opens -->
+		<div class="filter__filterBox"> <!-- This box should be hidden if the filter challenges button is not pressed -->
+			<div class="filter__title">
+				<h3 class="filter__h3">Filter challenges</h3>
+				<img src="assets/close.png" alt="" class="filter__closeButton">
 			</div>
-			<div class="filter__filterByRating">
-				<h4 class="filter__h4">By rating</h4>
-				<div class="filter__stars">
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
+			<div class="filter__filters">
+				<div class="filter__filterByType">
+					<h4 class="filter__h4">By type</h4>
+					<label>
+						<input type="checkbox" class="filter__onlineCheckbox" />
+						Include online challenges
+					</label>
+					<label>
+						<input type="checkbox" class="filter__onSiteCheckbox" />
+						Include on-site challenges
+					</label>
 				</div>
-				<p class="filter__paragraph">to</p>
-				<div class="filter__stars">
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
-					<i class="fa-solid fa-star"></i>
+				<div class="filter__filterByRating">
+					<h4 class="filter__h4">By rating</h4>
+					<div class="filter__starContainer">
+						<div class="filter__starsMinRating"></div>
+						<p class="filter__paragraph">to</p>
+						<div class="filter__starsMaxRating"></div>
+					</div>
+				</div>
+				<div class="filter__filterByTags">
+					<h4 class="filter__h4">By tags</h4>
+					<button class="filter__tagButton">Hacking</button>
+					<button class="filter__tagButton">SSH</button>
+					<button class="filter__tagButton">Web</button>
+					<button class="filter__tagButton">Coding</button>
+					<button class="filter__tagButton">CTF</button>
+					<button class="filter__tagButton">Linux</button>
+					<button class="filter__tagButton">Bash</button>
+					<button class="filter__tagButton">Javascript</button>
+					<button class="filter__tagButton">Electronics</button>
+					<button class="filter__tagButton">Phreaking</button>
 				</div>
 			</div>
-			<div class="filter__filterByTags">
-				<h4 class="filter__h4">By tags</h4>
-				<button class="filter__tagButton">Hacking</button>
-				<button class="filter__tagButton">SSH</button>
-				<button class="filter__tagButton">Web</button>
-				<button class="filter__tagButton">Coding</button>
-				<button class="filter__tagButton">CTF</button>
-				<button class="filter__tagButton">Linux</button>
-				<button class="filter__tagButton">Bash</button>
-				<button class="filter__tagButton">Javascript</button>
-				<button class="filter__tagButton">Electronics</button>
-				<button class="filter__tagButton">Phreaking</button>
-			</div>
-    </div>
 			<div class="filter__filterBySearch">
 				<h4 class="filter__h4">Or type to search for keyword</h4>
 				<input type="text" class="filter__inputFilter" placeholder="Start typing to filter"/>
 			</div>
-
+		</div>
 	</section>
 	<section class="ourChallenges">
 	</section>
