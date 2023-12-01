@@ -202,7 +202,7 @@ const createParticipants = function (minPar, maxPar) {
         const participantOption = document.createElement("option");
         participantOption.classList.add("partOption");
         participantOption.value = i;
-        participantOption.innerText = i;
+        participantOption.innerText = `${i} Participants`;
         particiSelect.appendChild(participantOption);
     }
 };

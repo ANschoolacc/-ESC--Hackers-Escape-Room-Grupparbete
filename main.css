@@ -1097,6 +1097,8 @@ html {
 .top-container i {
   margin-top: 30px;
   margin-right: 25px;
+  width: fit-content;
+  height: fit-content;
 }
 .top-container i:hover {
   cursor: pointer;
