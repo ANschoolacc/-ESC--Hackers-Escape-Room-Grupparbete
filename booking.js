@@ -202,8 +202,15 @@ const createParticipants = function (minPar, maxPar) {
         const participantOption = document.createElement("option");
         participantOption.classList.add("partOption");
         participantOption.value = i;
-        participantOption.innerText = `${i} Participants`;
-        particiSelect.appendChild(participantOption);
+        if(i == 1){
+            participantOption.innerText = `${i} Participant`;
+            particiSelect.appendChild(participantOption);
+        }else{
+            participantOption.innerText = `${i} Participants`;
+            particiSelect.appendChild(participantOption);
+        }
+        
+        
     }
 };
 
