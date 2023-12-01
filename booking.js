@@ -37,7 +37,7 @@ for (let i = 0; i < bookingBtn.length; i++) {
         }
 
         /*Declaring variable as date input then setting the 
-        starting value of date select to today*/
+        starting value of date select to todays date*/
         const dateInput = document.querySelector(
             ".booking-container__dateInput"
         );
@@ -91,7 +91,6 @@ bookingButtonOne.addEventListener("click", async () => {
     document
         .querySelector(".booking-container__submit-button")
         .classList.add("fade-in");
-    //Sets variable value to the userinput of .booking-container__dateInput
 
     /*Adds variables into url and runs function fetchData then 
     puts return value into dateApi variable*/
@@ -106,6 +105,31 @@ bookingButtonOne.addEventListener("click", async () => {
 });
 
 submitBookingButton.addEventListener("click", async () => {
+    // getting the values from the different inputs into the object.
+    booking.name = nameInput.value;
+    booking.email = emailInput.value;
+    booking.participants = parseInt(particiSelect.value);
+    booking.time = timeInput.value;
+    //Function that checks that the email has the right format before submitting
+    function validateEmail(email) {
+        const atPos = email.indexOf("@");
+        const dotPos = email.lastIndexOf(".");
+        return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
+    }
+/*If statement that ensures that the name input and email input 
+has correct format, else returns*/
+    if (
+        emailInput.value == "" ||
+        !emailInput.value.includes("@") ||
+        !emailInput.value.includes(".") ||
+        nameInput.value == "" ||
+        booking.time == "" ||
+        booking.participants == "" ||
+        validateEmail(emailInput.value) == false
+    ) {
+        return;
+    }
+//Adds and removes classes of elements
     document
         .querySelector(".booking-container__step-two")
         .classList.add("invisible");
@@ -115,13 +139,6 @@ submitBookingButton.addEventListener("click", async () => {
     document
         .querySelector(".booking-container__step-three")
         .classList.add("fade-in");
-
-    // getting the values from the different inputs into the object.
-
-    booking.name = nameInput.value;
-    booking.email = emailInput.value;
-    booking.participants = parseInt(particiSelect.value);
-    booking.time = timeInput.value;
 
     const res = await fetch(
         "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
@@ -158,6 +175,9 @@ function escapeBooking() {
 
     document.querySelector(".time").innerHTML = "";
     document.querySelector(".participants").innerHTML = "";
+
+    nameInput.value = "";
+    emailInput.value = "";
 
     booking = {};
 }

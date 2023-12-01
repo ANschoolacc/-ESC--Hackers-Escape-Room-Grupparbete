@@ -22,7 +22,7 @@
     <div class="logoAndTitle">
       <img class="logoAndTitle__logo" src="assets/image 4.png" alt="ESC-Logo" />
       <h1 class="logoAndTitle__title">Hacker Escape Rooms</h1>
-      <button class="logoAndTitle__hamburgerBtn">
+      <button type="button" class="logoAndTitle__hamburgerBtn">
         <img src="assets/Group 7.png" alt="" />
       </button>
     </div>
@@ -37,7 +37,7 @@
     </ul>
     <section class="hamburgerMenu">
       <div class="hamburgerMenu__menuCont">
-        <button class="hamburgerMenu__closeBtn">
+        <button type="button" class="hamburgerMenu__closeBtn">
           <img src="assets/close.png" alt="Close button" />
         </button>
         <ul class="hamburgerMenu__menu">
@@ -58,10 +58,10 @@
 
     <section class="btnCont btnCont--offSet">
       <a href="ourChallenges.html?online=false">
-        <button class="btnCont__onSiteBtn">On-site challenges</button>
+        <button type="button" class="btnCont__onSiteBtn">On-site challenges</button>
       </a>
       <a href="ourChallenges.html?onsite=false">
-        <button class="btnCont__onlineBtn">Online challenges</button>
+        <button type="button" class="btnCont__onlineBtn">Online challenges</button>
       </a>
     </section>
 
@@ -98,10 +98,10 @@
 
     <section class="btnCont btnCont--moreTopMargin">
       <a href="ourChallenges.html?online=false">
-        <button class="btnCont__onSiteBtn">On-site challenges</button>
+        <button type="button" class="btnCont__onSiteBtn">On-site challenges</button>
       </a>
-      <a href="ourChallenges.html?onsite=false">
-        <button class="btnCont__onlineBtn">Online challenges</button>
+      <a type="button" href="ourChallenges.html?onsite=false">
+        <button type="button" class="btnCont__onlineBtn">Online challenges</button>
       </a>
     </section>
 
@@ -111,7 +111,7 @@
         quidem haec eo spectant haec quoque vos omnino desit illud quo solo
         felicitatis libertatisque perficiuntur.
       </p>
-      <button class="break__btn">
+      <button type="button" class="break__btn">
         Read the full story
       </button>
     </section>
@@ -126,7 +126,7 @@
           Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
           nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
         </p>
-        <button class="info__btn">Book on-site today</button>
+        <button type="button" class="info__btn">Book on-site today</button>
       </div>
     </section>
 
@@ -140,7 +140,7 @@
           Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
           nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
         </p>
-        <a href="ourChallenges.html"><button class="info__btn">See all challenges</button></a>
+        <a href="ourChallenges.html"><button type="button" class="info__btn">See all challenges</button></a>
       </div>
     </section>
   </main>
@@ -187,7 +187,7 @@
         Praeterea, ex culpa non invenies unum aut non accusatis unum. Et
         nihil inuitam. Nemo nocere tibi erit, et non inimicos, et
       </p>
-      <button class="sidescroll__btn">Book this room</button>
+      <button type="button" class="sidescroll__btn">Book this room</button>
     </article>
   </template>
 
@@ -204,31 +204,31 @@
           <input name="date" type="date" class="booking-container__dateInput"></input>
         </div>
         <div class="booking-container__button-div">
-          <button class="booking-container__button">Search available items</button>
+          <button type="button" class="booking-container__button">Search available items</button>
         </div>
 
       </div>
-      <div class="booking-container__step-two invisible">
+      <form onsubmit="return false" class="booking-container__step-two invisible">
         <div class="booking-container__text second-step">
           <div class="top-container">
             <i class="fa-solid fa-x fa-xl" id="x-symbol"></i>
           </div>
           <h1 class="booking-container__title title-two">Book room "title of room" (step 2)</h1>
           <small class="booking-container__input-title">Name</small>
-          <input type="text" class="booking-container__name-input">
+          <input type="text" class="booking-container__name-input" required>
           <small class="booking-container__input-title">E-mail</small>
-          <input type="text" class="booking-container__e-mail-input">
+          <input type="email" class="booking-container__e-mail-input" required>
           <small class="booking-container__input-title">What time?</small>
-          <select name="" class="booking-container__select time">
+          <select name="time" class="booking-container__select time">
           </select>
           <small class="booking-container__input-title">How many participants?</small>
-          <select name="" class="booking-container__select participants">
+          <select name="participants" class="booking-container__select participants">
           </select>
         </div>
         <div class="booking-container__button-div-two">
-          <button class="booking-container__submit-button">Submit booking</button>
+          <input type="submit" value="Submit booking" class="booking-container__submit-button"></input>
         </div>
-      </div>
+      </form>
 
       <div class="booking-container__step-three invisible">
         <h1 class="booking-container__title thank-you">Thank you!</h1>
