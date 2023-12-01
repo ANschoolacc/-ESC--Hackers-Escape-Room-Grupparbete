@@ -47,6 +47,7 @@ Datum: Fredag 17 november
 
 
 Avdtämning:
+
 löst det så att vi får tag i rätt id till utmaningarna och rätt tillgängliga tider på det datumet till den specifika utmaningen. 
 
 Kommit en bra bit med bokningsdelen. Det som fattas är att få in all data in i ett objekt som kan skickas till api för att få tillbaka en response som är valid / invalid. 
@@ -54,11 +55,13 @@ Kommit en bra bit med bokningsdelen. Det som fattas är att få in all data in i
 
 
 Datum: tisdag 22 November
+
 Vi gjorde en avstämning hur det går för alla i gruppen samt diskuterade hur vi ska gå tillväga för att implementera testing i projektet.
 
 
 
 Datum: Onsdag 23 november
+
 Mötet blev inställt på grund av att för få som kunde medverka.
 
 
