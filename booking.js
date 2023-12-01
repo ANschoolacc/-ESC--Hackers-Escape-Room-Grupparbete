@@ -151,7 +151,6 @@ has correct format, else returns*/
         }
     );
     const dataBooking = await res.json();
-    console.log(dataBooking);
 });
 
 //function that close down the modal and enable scroll on the website once again.
