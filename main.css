@@ -833,18 +833,6 @@ html {
 }
 
 /*----booking section----*/
-.filter__h2 {
-  font-weight: normal;
-  font-size: 32px;
-}
-
-/* .booking {
-  position: absolute;
-  inset: 50%;
-  transform: translate(-50%, -50%);
-  width: 100dvw;
-  height: 100dvh;
-} */
 .booking-container {
   display: none;
   position: fixed;
@@ -1107,10 +1095,10 @@ html {
   flex-direction: row-reverse;
 }
 .top-container i {
-  width: fit-content;
-  height: fit-content;
   margin-top: 30px;
   margin-right: 25px;
+  width: fit-content;
+  height: fit-content;
 }
 .top-container i:hover {
   cursor: pointer;
