@@ -1,6 +1,5 @@
 //Import challenges function from fetchchallenges.js
 import { challenges } from "./fetchChallenges.js";
-console.log(challenges)
 
 //Declaring global variables containing html elements
 const bookingContainer = document.querySelector(".booking-container");
