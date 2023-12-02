@@ -1,6 +1,18 @@
 .filter{
     text-align: center;
 
+    &__filterBoxOpenButton{
+        background-color: #011827;
+        border: solid 2px #8acfe5;
+        border-radius: 4px;
+        color: #8acfe5;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        height: 66px;
+        margin-top: 56px;
+        width: 308px;
+    }
     &__filterBox{
         display: flex;
         flex-direction: column;
@@ -51,12 +63,24 @@
         display: flex;
         flex-direction: row;
     }
-
-    &___filterBySearch{
+    &__filterBySearch{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    &__h4Keyword{
+        grid-row: 1 / 1;
+        grid-column: 2 / 2;
+        text-align: left;
     }
 
     &__inputFilter{
+        grid-row: 2 / 2;
+        grid-column: 2 / 2;
+        font-size: 1rem;
         margin-bottom: 2em;
+        margin-right: 2em;
+        padding-left: 0.3em;
     }
 
     &__starsMinRating{
@@ -70,6 +94,9 @@
     &__tagButton {
         border-radius: 25px;
         padding: 5px 10px;
+        margin-right: 0.2em;
+        background-color: rgb(238, 238, 238);
+        border: solid rgb(178, 178, 178) 2px;
     }
 
     &__tagButton--selected {
