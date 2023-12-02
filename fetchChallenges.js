@@ -18,7 +18,7 @@ if (window.location.pathname.includes('ourChallenges')) {
     renderChallenges(container, true)
 }
 
-export function renderChallenges(container, threeHighest) {
+function renderChallenges(container, threeHighest) {
     if(!challenges) return;
     let challengesToRender
     if (threeHighest) {
@@ -26,7 +26,6 @@ export function renderChallenges(container, threeHighest) {
     } else {
         challengesToRender = challenges
     }
-    const challengeTemplate = document.getElementById('card-template')
     challengesToRender.forEach(challenge => {
     const template = challengeTemplate.content.cloneNode(true)
     const card = template.querySelector('.sidescroll__card');
@@ -47,7 +46,35 @@ export function renderChallenges(container, threeHighest) {
     description.textContent = challenge.description;
     createStars(rating.firstElementChild, challenge.rating)
     container.appendChild(template)
+    const challengeEl = createChallenge(challenge)
+    container.appendChild(challengeEl)
     })
+}
+
+function createChallenge(challenge) {
+    const challengeTemplate = document.getElementById('card-template')
+    const template = challengeTemplate.content.cloneNode(true)
+    const card = template.querySelector('.sidescroll__card');
+    const image = template.querySelector('.sidescroll__img');
+    const icon = template.querySelector(".sidescroll__icon");
+    const title = template.querySelector('.sidescroll__title');
+    const rating = template.querySelector('.sidescroll__rating');
+    const participants = template.querySelector('.sidescroll__participants');
+    const description = template.querySelector('.sidescroll__text');
+    const button = template.querySelector('.sidescroll__btn')
+    button.textContent = challenge.type === 'online' ? 'Take challenge online' : 'Book this room'
+    if (button.textContent === "Book this room") {
+        button.classList.add("bookingBtn");
+    }
+    icon.classList.add(challenge.type === "online" ? "fa-laptop" : "fa-house");
+    card.id = challenge.id
+    image.src = challenge.image // `${challenge.image}?image=${Math.floor(Math.random() * 16)}` to make image random
+    title.textContent = challenge.type === 'onsite' ? challenge.title + ' (on-site)' : challenge.title
+    participants.textContent = challenge.minParticipants === challenge.maxParticipants ? `${challenge.minParticipants} participants` : `${challenge.minParticipants}-${challenge.maxParticipants} participants`
+    participants.textContent += challenge.type === 'online' ? ' (networked)' : ''
+    description.textContent = challenge.description;
+    createStars(rating.firstElementChild, challenge.rating)
+    return template
 }
 
 function createStars(parent, rating) {

@@ -35,29 +35,31 @@ for (let i = 0; i < bookingBtn.length; i++) {
         if (bookingBtn[i].innerText === "Take challenge online") {
             return;
         }
+
+        /*Declaring variable as date input then setting the 
+        starting value of date select to todays date*/
+        const dateInput = document.querySelector(
+            ".booking-container__dateInput"
+        );
+        dateInput.valueAsDate = new Date();
+
+        /*Declaring variable to todays date with correct format, 
+        then sets new attribute to dateinput with a minimum date of today.*/
+        const today = new Date().toISOString().split("T")[0];
+        document.getElementsByName("date")[0].setAttribute("min", today);
+
         //sets value of cardId to clicked .sideScroll__btn parent id
         cardId = bookingBtn[i].parentElement.id;
+
         //Changes style of element and adds class
         bookingContainer.style.display = "block";
         bookingContainer.classList.add("grow-in");
+
         //Changes style of element and removes class
         document.querySelector(".body").style.overflow = "hidden";
         document
             .querySelector(".booking-container__step-one")
             .classList.remove("invisible");
-        //For loop that creates 30 dates starting from todays date and forward
-        for (let i = 0; i < 30; i++) {
-            const today = new Date();
-            const comingDays = new Date(today);
-            comingDays.setDate(today.getDate() + i);
-            //Adds each date as option in booking-container__date
-            const dateOption = document.createElement("option");
-            dateOption.classList.add("booking-container__date");
-            dateOption.innerText = comingDays.toISOString().split("T")[0];
-            document
-                .querySelector(".booking-container__dateInput")
-                .appendChild(dateOption);
-        }
 
         //Getting the right challenge and id
         const challenge = challenges[i];
@@ -72,6 +74,11 @@ for (let i = 0; i < bookingBtn.length; i++) {
 }
 //Eventlistener function that reacts to click on "search available times" button
 bookingButtonOne.addEventListener("click", async () => {
+    //Sets variable value to the users input of .booking-container__dateInput
+    let dateValue = document.querySelector(
+        ".booking-container__dateInput"
+    ).value;
+
     //Adds and removes classes of elements
     document
         .querySelector(".booking-container__step-one")
@@ -84,23 +91,45 @@ bookingButtonOne.addEventListener("click", async () => {
     document
         .querySelector(".booking-container__submit-button")
         .classList.add("fade-in");
-    //Sets variable value to the userinput of .booking-container__dateInput
-    let dateInput = document.querySelector(
-        ".booking-container__dateInput"
-    ).value;
+
     /*Adds variables into url and runs function fetchData then 
-puts return value into dateApi variable*/
+    puts return value into dateApi variable*/
     dateApi = await fetchData(
-        `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateInput}&challenge=${cardId}`
+        `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${dateValue}&challenge=${cardId}`
     );
-  
+
     //giving the date key the correct value.
-    booking.date = dateInput;
+    booking.date = dateValue;
 
     createAvailableTimes(dateApi);
 });
 
 submitBookingButton.addEventListener("click", async () => {
+    // getting the values from the different inputs into the object.
+    booking.name = nameInput.value;
+    booking.email = emailInput.value;
+    booking.participants = parseInt(particiSelect.value);
+    booking.time = timeInput.value;
+    //Function that checks that the email has the right format before submitting
+    function validateEmail(email) {
+        const atPos = email.indexOf("@");
+        const dotPos = email.lastIndexOf(".");
+        return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
+    }
+/*If statement that ensures that the name input and email input 
+has correct format, else returns*/
+    if (
+        emailInput.value == "" ||
+        !emailInput.value.includes("@") ||
+        !emailInput.value.includes(".") ||
+        nameInput.value == "" ||
+        booking.time == "" ||
+        booking.participants == "" ||
+        validateEmail(emailInput.value) == false
+    ) {
+        return;
+    }
+//Adds and removes classes of elements
     document
         .querySelector(".booking-container__step-two")
         .classList.add("invisible");
@@ -110,13 +139,6 @@ submitBookingButton.addEventListener("click", async () => {
     document
         .querySelector(".booking-container__step-three")
         .classList.add("fade-in");
-
-    // getting the values from the different inputs into the object.
-
-    booking.name = nameInput.value;
-    booking.email = emailInput.value;
-    booking.participants = parseInt(particiSelect.value);
-    booking.time = timeInput.value;
 
     const res = await fetch(
         "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
@@ -134,7 +156,7 @@ submitBookingButton.addEventListener("click", async () => {
 //function that close down the modal and enable scroll on the website once again.
 function escapeBooking() {
     bookingContainer.style.display = "none";
-    document.querySelector(".body").style.overflow = "scroll";
+    document.querySelector(".body").style.overflow = "";
 
     document
         .querySelector(".booking-container__step-one")
@@ -153,22 +175,24 @@ function escapeBooking() {
     document.querySelector(".time").innerHTML = "";
     document.querySelector(".participants").innerHTML = "";
 
+    nameInput.value = "";
+    emailInput.value = "";
+
     booking = {};
 }
 
-//Making sure you can close the open modal with the esc butto
+//Making sure you can close the open modal with the esc button
 document.body.addEventListener("keydown", (e) => {
     if (e.key == "Escape") {
         escapeBooking();
     }
 });
 
-//section for later usage
-
 const nameInput = document.querySelector(".booking-container__name-input");
 const emailInput = document.querySelector(".booking-container__e-mail-input");
 const particiSelect = document.querySelector(".participants");
 const timeInput = document.querySelector(".time");
+
 //creating obj for the booking request
 let booking = {};
 
@@ -176,10 +200,17 @@ let booking = {};
 const createParticipants = function (minPar, maxPar) {
     for (let i = minPar; i <= maxPar; i++) {
         const participantOption = document.createElement("option");
-        participantOption.classList.add("particiOption");
+        participantOption.classList.add("partOption");
         participantOption.value = i;
-        participantOption.innerText = i;
-        particiSelect.appendChild(participantOption);
+        if(i == 1){
+            participantOption.innerText = `${i} Participant`;
+            particiSelect.appendChild(participantOption);
+        }else{
+            participantOption.innerText = `${i} Participants`;
+            particiSelect.appendChild(participantOption);
+        }
+        
+        
     }
 };
 
@@ -204,7 +235,26 @@ function createAvailableTimes(obj) {
     for (let i = 0; i < obj.slots.length; i++) {
         const timeSelect = document.querySelector(".time");
         const timeOption = document.createElement("option");
+        timeOption.classList.add("timeOption");
         timeOption.innerText = obj.slots[i];
         timeSelect.appendChild(timeOption);
     }
 }
+
+//function to get the button for exiting
+function getEscapeBtn() {
+    const xBtn = document.querySelectorAll("#x-symbol");
+    return xBtn;
+}
+
+//function so that you can leave the modal via x-button
+function leaveBookingFunction() {
+    const xBtn = getEscapeBtn();
+
+    xBtn.forEach((button) => {
+        button.addEventListener("click", () => {
+            escapeBooking();
+        });
+    });
+}
+leaveBookingFunction();
