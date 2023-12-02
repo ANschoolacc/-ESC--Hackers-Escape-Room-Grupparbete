@@ -1123,26 +1123,41 @@ html {
 /*----searchBox section----*/
 .filter {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.filter__h2 {
+  font-weight: normal;
+  font-size: 40px;
+  margin: 42px 0px;
 }
 .filter__filterBoxOpenButton {
   background-color: #011827;
-  border: solid 2px #8acfe5;
-  border-radius: 4px;
-  color: #8acfe5;
+  border-radius: 6px;
+  color: #ffffff;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 700;
-  height: 66px;
-  margin-top: 56px;
-  width: 308px;
+  padding: 16px 32px;
+}
+.filter__filterBoxOpenButton:hover {
+  color: #8acfe5;
 }
 .filter__filterBox {
   display: flex;
   flex-direction: column;
-  border: solid black 1px;
+  border: solid #b6bdb5 3px;
   padding: 0em 0em;
   display: none;
   margin: 0em 5em;
+  max-width: 1150px;
+}
+@media screen and (max-width: 740px) {
+  .filter__filterBox {
+    max-width: 363px;
+    margin: 0px 0px;
+  }
 }
 .filter__title {
   display: flex;
@@ -1158,12 +1173,12 @@ html {
   margin: 20px;
   text-align: left;
 }
-@media screen and (min-width: 740px) {
+@media screen and (min-width: 960px) {
   .filter__filters {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media screen and (min-width: 1200px) {
+@media screen and (min-width: 1260px) {
   .filter__filters {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -1175,6 +1190,7 @@ html {
   width: 1rem;
   right: 0.4em;
   padding: 0.2em 0.2em;
+  cursor: pointer;
 }
 .filter__filterByType {
   display: flex;
@@ -1192,6 +1208,7 @@ html {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
+  margin-left: 20px;
 }
 .filter__h4Keyword {
   grid-row: 1/1;
@@ -1205,22 +1222,37 @@ html {
   margin-bottom: 2em;
   margin-right: 2em;
   padding-left: 0.3em;
+  border: solid #b6bdb5 3px;
+  border-radius: 4px;
+}
+.filter__inputFilter::placeholder {
+  color: #b6bdb5;
+  font-weight: 400;
+}
+.filter__inputFilter:focus {
+  outline-width: 0;
 }
 .filter__starsMinRating {
   color: red;
+  cursor: pointer;
 }
 .filter__starsMaxRating {
   color: red;
+  cursor: pointer;
 }
 .filter__tagButton {
+  color: rgba(113, 113, 113, 0.8156862745);
   border-radius: 25px;
   padding: 5px 10px;
   margin-right: 0.2em;
-  background-color: rgb(238, 238, 238);
+  background-color: transparent;
   border: solid rgb(178, 178, 178) 2px;
+  font-weight: 700;
+  cursor: pointer;
 }
 .filter__tagButton--selected {
-  background-color: grey;
+  background-color: rgba(113, 113, 113, 0.8156862745);
+  color: #ffffff;
 }
 .filter__starContainer {
   display: flex;
@@ -1230,4 +1262,15 @@ html {
 }
 .filter__filterByType label {
   font-size: 18px;
+}
+.filter__onlineCheckbox {
+  scale: 1.25;
+  accent-color: red;
+}
+.filter__onSiteCheckbox {
+  scale: 1.2;
+  accent-color: red;
+}
+.filter__checkboxLabel {
+  margin-bottom: 10px;
 }
