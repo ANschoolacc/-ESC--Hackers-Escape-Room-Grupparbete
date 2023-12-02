@@ -3,7 +3,6 @@ import { challenges } from "./fetchChallenges.js";
 //Getting DOM elements to be used globally
 const onlineCheckbox = document.querySelector(".filter__onlineCheckbox");
 const onSiteCheckbox = document.querySelector(".filter__onSiteCheckbox");
-const tagButtons = document.querySelectorAll(".filter__tagButton");
 const inputFilter = document.querySelector('.filter__inputFilter');
 const openSearchBox = document.querySelector('.filter__filterBoxOpenButton');
 const searchBox = document.querySelector('.filter__filterBox');
@@ -12,6 +11,7 @@ const closeSearchBox = document.querySelector('.filter__closeButton');
 //Setting current min and max rating
 let currentMinRating = 0;
 let currentMaxRating = 5;
+
 //Getting search params from URL
 const searchParams = new URL(document.location).searchParams;
 onlineCheckbox.checked = searchParams.get("online") !== "false";
@@ -19,31 +19,14 @@ onSiteCheckbox.checked = searchParams.get("onsite") !== "false";
 
 //Event listeners for the filter options
 onlineCheckbox.addEventListener("change", () => {
-    setSearchParams(`online, ${onlineCheckbox.checked}`);
+    setSearchParams("online", onlineCheckbox.checked);
     filterData(challenges);
 });
 onSiteCheckbox.addEventListener("change", () => {
     filterData(challenges);
-    setSearchParams(`onsite, ${onSiteCheckbox.checked}`);
+    setSearchParams("onsite", onSiteCheckbox.checked);
 });
-tagButtons.forEach((button) => {
-    searchParams.forEach((value, key) => {
-        if (key === "tags") {
-            if (value.includes(button.innerHTML.toLowerCase())) {
-                button.classList.add("filter__tagButton--selected");
-            }
-        }
-    });
-    button.addEventListener("click", () => {
-        button.classList.toggle("filter__tagButton--selected");
-        filterData(challenges);
-        setSearchParams(
-            `tags, ${[
-                ...document.querySelectorAll(".filter__tagButton--selected"),
-            ].map((button) => button.innerHTML.toLowerCase())}`
-        );
-    });
-});
+
 inputFilter.addEventListener("input", () =>{
     filterData(challenges);
 });
@@ -56,14 +39,82 @@ closeSearchBox.addEventListener('click', () => {
     openSearchBox.style.display = "";
 })
 
+/*
+This function, getAllLabels, is used to extract all unique labels from an array of challenges. 
+It takes an array, challenges, as an argument. 
+The function uses a Set to ensure uniqueness of labels. It iterates over each challenge in the array. 
+For each challenge, it further iterates over each label in the challenge's labels array.
+Each label is added to the Set, which automatically ensures that each label only appears once, even if it appears multiple times in the challenges array.
+Finally, the function converts the Set back into an array and returns it. This array contains all unique labels from the challenges array.
+*/
+function getAllLabels(challenges) {
+    const uniqueLabels = new Set();
+    challenges.forEach((challenge) => {
+        challenge.labels.forEach((label) => {
+            uniqueLabels.add(label);
+        });
+    });
+  
+    return Array.from(uniqueLabels);
+}
+
+/*
+This function, createButtonsForChallenges, creates a button for each label in the provided array, appends them to a container in the DOM, and returns an array of the created button elements.
+It takes an array, labels, as an argument. 
+For each label in the array, it creates a new button element, sets its text content to the label, adds a CSS class for styling, and appends it to the container. 
+Finally, it returns an array of the created button elements.
+*/
+function createButtonsForChallenges(labels) {
+    const buttonsContainer = document.querySelector(".filter__filterByTags");
+    const tagButtons = [];
+
+    labels.forEach((label) => {
+        const button = document.createElement("button");
+        button.textContent = label;
+        button.classList.add("filter__tagButton");
+        buttonsContainer.appendChild(button);
+        tagButtons.push(button);
+    });
+
+    return tagButtons;
+}
+
+/*
+This function, addEventListenersToButtons, adds click event listeners to an array of button elements.
+It takes an array, tagButtons, as an argument.
+For each button in the array, it adds a click event listener. 
+When a button is clicked, the event listener triggers a series of functions to filter the displayed challenges based on the selected tags.
+*/
+function addEventListenersToButtons(tagButtons) {
+    tagButtons.forEach((button) => {
+        searchParams.forEach((value, key) => {
+            if (key === "tags") {
+                if (value.includes(button.innerHTML.toLowerCase())) {
+                    button.classList.add("filter__tagButton--selected");
+                }
+            }
+        });
+
+        button.addEventListener("click", () => {
+            button.classList.toggle("filter__tagButton--selected");
+            filterData(challenges);
+            setSearchParams('tags', tagButtons.filter(button => button.classList.contains('filter__tagButton--selected')).map(button => button.innerHTML.toLowerCase()).join('+'))
+        });
+    });
+}
+
+//Create tag buttons on page load and add event listeners
+const uniqueLabels = getAllLabels(challenges);
+const tagButtons = createButtonsForChallenges(uniqueLabels);
+addEventListenersToButtons(tagButtons);
+
 //Filter challenges on page load if search params exist
 if (searchParams.size > 0) {
     filterData(challenges);
 }
 
-function setSearchParams(str) {
+function setSearchParams(key, value) {
     const searchParams = new URLSearchParams(window.location.search);
-    const [key, value] = str.split(", ");
     searchParams.set(key, value);
     const entries = [...searchParams.entries()];
     entries.forEach(([key, value]) => {
@@ -71,10 +122,7 @@ function setSearchParams(str) {
             searchParams.delete(key);
         }
     });
-    const newRelativePath =
-        searchParams.toString().length > 0
-            ? window.location.pathname + "?" + searchParams.toString()
-            : window.location.pathname;
+    const newRelativePath = searchParams.size > 0 ? window.location.pathname + "?" + decodeURIComponent(searchParams) : window.location.pathname;
     history.pushState(null, "", newRelativePath);
 }
 
@@ -91,13 +139,9 @@ function byType(filteredData) {
     if (onlineCheckbox.checked && onSiteCheckbox.checked) {
         filteredData = challenges;
     } else if (onlineCheckbox.checked && !onSiteCheckbox.checked) {
-        filteredData = challenges.filter(
-            (challenge) => challenge.type !== "onsite"
-        );
+        filteredData = challenges.filter((challenge) => challenge.type !== "onsite");
     } else if (onSiteCheckbox.checked && !onlineCheckbox.checked) {
-        filteredData = challenges.filter(
-            (challenge) => challenge.type !== "online"
-        );
+        filteredData = challenges.filter((challenge) => challenge.type !== "online");
     } else {
         filteredData = [];
     }
@@ -126,9 +170,7 @@ function byTag(filteredData) {
         return filteredData;
     }
 
-    const selectedTags = selectedButtons.map((button) =>
-        button.innerHTML.toLowerCase()
-    );
+    const selectedTags = selectedButtons.map((button) => button.innerHTML.toLowerCase());
     filteredData = filteredData.filter((challenge) =>
         selectedTags.every((tag) => challenge.labels.includes(tag))
     );
@@ -212,16 +254,6 @@ function createMinMaxRating() {
 
 createMinMaxRating();
 
-// function searchFilterCards (){
-
-// }
-
-    /*Skapa en funktion som läser vad av inputFilter är och jämför deras värde
-    med challenges.title OR challenges.description och returnerar
-    challenges om de antingen har samma beskrivning eller titel som inputFilter
-    (Den behöver bara vara samma som antingen beskrivning eller titel inte båda)*/
-
-
 /*
 This function, filterData, is used to filter an array of challenges based on various criteria: type, rating, tag, and keyword. 
 It takes an array, challenges, as an argument. 
@@ -240,9 +272,9 @@ function filterData(challenges) {
 }
 
 function renderFilteredCards(filteredData) {
-    const container = [...document.querySelector(".ourChallenges").children];
+    const children = [...document.querySelector(".ourChallenges").children];
     const zeroChallenges = document.querySelector(".zeroChallenges");
-    container.forEach((child) => {
+    children.forEach((child) => {
         if (filteredData.map((challenge) => challenge.id).includes(Number(child.id))) {
             child.style.display = "";
         } else {
